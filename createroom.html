@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>SiPuncak - Buat Trip</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body class="bg-surface text-on-surface d-flex flex-column min-vh-100">
+
+    <header class="bg-surface shadow-sm sticky-top">
+        <nav class="container-fluid max-w-container mx-auto py-3 px-4">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-2 font-headline-md fw-bold text-primary-custom" style="cursor: pointer;" onclick="window.location.href='index.html'">
+                    <span class="material-symbols-outlined" style="font-size: 28px; font-variation-settings: 'FILL' 1;">terrain</span>
+                    <span>SiPuncak</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="flex-grow-1 d-flex align-items-center justify-content-center px-3 py-5 bg-surface position-relative overflow-hidden mountain-pattern">
+        <div class="position-absolute top-0 start-0 w-100 h-100 pe-none" style="opacity: 0.15;">
+            <div class="position-absolute bg-primary-container rounded-circle" style="top: -100px; left: -100px; width: 384px; height: 384px; filter: blur(120px);"></div>
+            <div class="position-absolute bg-secondary-container rounded-circle" style="top: 50%; right: -100px; width: 256px; height: 256px; filter: blur(100px);"></div>
+        </div>
+
+        <div class="w-100 position-relative" style="max-width: 520px; z-index: 10;">
+            <div class="text-center mb-4" data-aos="fade-down" data-aos-duration="800">
+                <div class="d-inline-flex align-items-center justify-content-center bg-primary-fixed rounded-circle mb-3" style="width: 80px; height: 80px;">
+                    <span class="material-symbols-outlined text-primary-custom" style="font-size: 48px; font-variation-settings: 'FILL' 1;">hiking</span>
+                </div>
+                <h1 class="font-headline-lg text-on-surface mb-2">Buat Trip Baru</h1>
+                <p class="font-body-md text-secondary-custom">Atur patungan peralatan pendakian dan ajak teman-temanmu</p>
+            </div>
+
+            <div class="bg-surface-container-lowest border border-outline-variant shadow-custom-md rounded-custom-lg p-4" data-aos="zoom-in" data-aos-duration="800" data-aos-delay="200">
+                <form action="#" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label class="font-label-md text-secondary-custom d-block mb-2" for="host-name">
+                            <span class="material-symbols-outlined align-middle me-1" style="font-size: 18px;">person</span>
+                            Nama Ketua Tim
+                        </label>
+                        <div class="position-relative">
+                            <span class="material-symbols-outlined position-absolute text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">badge</span>
+                            <input class="form-control ps-5 py-3 bg-surface border-surface-variant rounded-3 font-body-md" id="host-name" placeholder="e.g., Budi Santoso" required type="text">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="font-label-md text-secondary-custom d-block mb-2" for="restaurant">
+                            <span class="material-symbols-outlined align-middle me-1" style="font-size: 18px;">landscape</span>
+                            Nama Gunung / Tujuan
+                        </label>
+                        <div class="position-relative">
+                            <span class="material-symbols-outlined position-absolute text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%); font-variation-settings: 'FILL' 1;">terrain</span>
+                            <input class="form-control ps-5 py-3 bg-surface border-surface-variant rounded-3 font-body-md" id="restaurant" placeholder="e.g., Gunung Semeru, Ranu Kumbolo" required type="text">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="font-label-md text-secondary-custom d-block mb-2" for="bankname">
+                            <span class="material-symbols-outlined align-middle me-1" style="font-size: 18px;">account_balance_wallet</span>
+                            Nama Bank/E-Wallet
+                        </label>
+                        <div class="position-relative">
+                            <span class="material-symbols-outlined position-absolute text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">
+                                account_balance
+                            </span>
+                            <input id="bankname" type="text" placeholder="e.g., Bank BCA, GoPay, OVO" class="form-control ps-5 py-3 bg-surface border-surface-variant rounded-3 font-body-md">
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="font-label-md text-secondary-custom d-block mb-2" for="rekening">
+                            <span class="material-symbols-outlined align-middle me-1" style="font-size: 18px;">credit_card</span>
+                            Nomor Rekening/E-Wallet
+                        </label>
+                        <div class="position-relative">
+                            <span class="material-symbols-outlined position-absolute text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">
+                                payments
+                            </span>
+                            <input id="rekening" type="text" placeholder="e.g., 1234567890" class="form-control ps-5 py-3 bg-surface border-surface-variant rounded-3 font-body-md">
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-start gap-2 bg-primary-fixed text-on-primary-container p-3 rounded-3 mb-4">
+                        <span class="material-symbols-outlined text-primary-custom" style="font-variation-settings: 'FILL' 1; font-size: 24px;">info</span>
+                        <span class="font-label-sm">Sebagai ketua tim, hanya kamu yang bisa finalisasi pembagian biaya peralatan.</span>
+                    </div>
+
+                    <div class="pt-2">
+                        <button onclick="createRoom()" class="btn btn-primary-custom w-100 py-3 rounded-custom font-label-md fs-5 shadow-custom-md d-flex justify-content-center align-items-center gap-2 mb-3" type="button">
+                            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+                            <span>Buat Trip & Mulai Patungan</span>
+                        </button>
+
+                        <a class="btn w-100 d-flex align-items-center justify-content-center gap-2 py-2 text-secondary-custom font-label-md text-decoration-none" href="index.html">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">
+                                arrow_back
+                            </span>
+                            <span>Kembali</span>
+                        </a>
+                    </div>
+                </form>
+            </div>
+
+            <div class="mt-4 d-flex flex-column align-items-center" style="opacity: 0.7;" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
+                <div class="bg-surface-container-high rounded-pill mb-3" style="width: 96px; height: 4px;"></div>
+                <p class="font-label-sm text-secondary-custom text-center"><span class="material-symbols-outlined align-middle" style="font-size: 16px;">groups</span> Bergabunglah dengan ribuan pendaki yang sudah patungan bareng!</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-surface-container-lowest border-top border-surface-variant">
+        <div class="container-fluid max-w-container mx-auto py-3 px-3">
+            <div class="row g-3 align-items-center">
+                <div class="col-12 col-md-6 text-center text-md-start">
+                    <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start mb-2">
+                        <span class="material-symbols-outlined text-primary-custom" style="font-variation-settings: 'FILL' 1;">terrain</span>
+                        <span class="font-label-md fw-bold text-primary-custom">SiPuncak</span>
+                    </div>
+                    <p class="font-label-sm text-secondary-custom mb-0">© 2026 SiPuncak. All rights reserved.</p>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="d-flex justify-content-center justify-content-md-end gap-3">
+                        <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Privacy Policy</a>
+                        <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Terms of Service</a>
+                        <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Help Center</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true
+        });
+    </script>
+
+    <script>
+        function createRoom() {
+            const host = document.getElementById("host-name").value.trim();
+            const restaurant = document.getElementById("restaurant").value.trim();
+            const bankname = document.getElementById("bankname").value.trim();
+            const rekening = document.getElementById("rekening").value.trim();
+
+            if (host === "" || restaurant === "" || bankname === "" || rekening === "") {
+                alert("Semua data wajib diisi");
+                return;
+            }
+
+            const roomData = {
+                roomName: restaurant,
+                host: host,
+                bankname: bankname,
+                rekening: rekening,
+                roomCode: "QR" + Math.floor(100000 + Math.random() * 900000),
+                users: [host],
+                items: [],
+                tax: 0,
+                discount: 0,
+                fee: 0,
+                locked: false
+            };
+
+            localStorage.setItem("roomData", JSON.stringify(roomData));
+            window.location.href = "room.html";
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>SiPuncak - Rincian</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body class="bg-surface">
+
+  <header class="bg-surface sticky-top p-2 px-3 shadow-sm">
+    <div class="container-fluid max-w-container mx-auto py-2 px-3">
+      <div class="d-flex align-items-center gap-2 font-headline-md fw-bold text-primary-custom">
+        <span class="material-symbols-outlined" style="font-size: 28px; font-variation-settings: 'FILL' 1;">terrain</span>
+        <span>SiPuncak</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="container px-3 py-3" style="max-width: 480px; padding-bottom: 64px;">
+
+    <div class="d-flex flex-column align-items-center text-center mb-4">
+      <div class="d-flex align-items-center justify-content-center rounded-circle shadow-sm mb-3" style="width: 72px; height: 72px; background: linear-gradient(135deg, var(--color-primary-fixed), var(--color-primary-container));">
+        <span class="material-symbols-outlined text-white" style="font-size: 42px; font-variation-settings: 'FILL' 1;">task_alt</span>
+      </div>
+      <h1 class="font-headline-md text-on-surface mb-2">Perhitungan Selesai!</h1>
+      <p class="font-body-md text-secondary-custom">Berikut rincian patungan peralatan pendakian untuk trip ini</p>
+    </div>
+
+    <div class="bg-surface-container-lowest rounded-custom shadow-custom-md overflow-hidden position-relative border border-surface-variant">
+
+      <div style="height: 10px; background: linear-gradient(90deg, var(--color-primary-container) 0%, var(--color-army-green-light) 100%); width: 100%;"></div>
+      <div class="p-3">
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div>
+            <p class="font-label-sm text-secondary-custom text-uppercase mb-1 d-flex align-items-center gap-1" style="letter-spacing: 0.1em;">
+              <span class="material-symbols-outlined" style="font-size: 16px;">tag</span>
+              ID Transaksi
+            </p>
+            <p class="font-label-md text-on-surface mb-0 fw-bold">#SP-2026-9982</p>
+          </div>
+          <div class="text-end">
+            <p class="font-label-sm text-secondary-custom text-uppercase mb-1 d-flex align-items-center gap-1 justify-content-end" style="letter-spacing: 0.1em;">
+              <span class="material-symbols-outlined" style="font-size: 16px;">event</span>
+              Tanggal
+            </p>
+            <p id="transactionDate" class="font-label-md text-on-surface mb-0"></p>
+          </div>
+        </div>
+        <div class="receipt-dashed-line mb-3"></div>
+
+        <div id="receiptItems" class="mb-3"></div>
+        <div class="receipt-dashed-line my-3"></div>
+
+        <div class="mb-3">
+          <div class="d-flex justify-content-between text-secondary-custom mb-2">
+            <span>Subtotal</span>
+            <span id="subtotalBill">Rp 0</span>
+          </div>
+
+          <div class="d-flex justify-content-between text-secondary-custom mb-2">
+            <span>Pajak</span>
+            <span id="taxBill">Rp 0</span>
+          </div>
+
+          <div class="d-flex justify-content-between text-secondary-custom mb-2">
+            <span>Diskon</span>
+            <span id="discountBill">- Rp 0</span>
+          </div>
+
+          <div class="d-flex justify-content-between text-secondary-custom mb-2">
+            <span>Biaya Tambahan</span>
+            <span id="feesBill">Rp 0</span>
+          </div>
+        </div>
+
+        <div class="receipt-dashed-line my-3"></div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3 p-3 rounded-3" style="background: linear-gradient(135deg, rgba(85, 107, 78, 0.1), rgba(85, 107, 78, 0.05));">
+          <span class="font-headline-md text-on-surface">Total Keseluruhan</span>
+          <span id="totalBill" class="font-headline-md text-primary-custom fw-bold">Rp 0</span>
+        </div>
+      </div>
+
+      <div class="p-3 mx-3 mb-3 rounded-3" style="background: linear-gradient(135deg, rgba(85, 107, 78, 0.15), rgba(107, 132, 98, 0.1)); border: 2px solid var(--color-primary-container);">
+        <div class="d-flex align-items-start gap-3">
+          <span class="material-symbols-outlined text-primary-custom mt-1" style="font-size: 32px; font-variation-settings: 'FILL' 1;">account_balance_wallet</span>
+          <div class="flex-grow-1">
+            <p id="hostTransfer" class="font-label-md text-on-primary-container mb-2 fw-bold">
+              Transfer ke Ketua Tim
+            </p>
+            <div>
+              <div class="d-flex justify-content-between align-items-center bg-white p-3 rounded-3 border shadow-sm" style="border-color: var(--color-primary-container) !important;">
+                <span id="rekeningText" class="font-label-md fw-bold text-on-surface">
+                  -
+                </span>
+                <button class="btn btn-sm text-primary-custom p-0 border-0 hover-lift">
+                  <span class="material-symbols-outlined">content_copy</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height: 20px; background-image: url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9InBhdHRlcm4iIHg9IjAiIHk9IjAiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTTAgMTBMMTAgMEwwIDAtMTAgMTBaTTQwIDEwTDMwIDBMNDAgMEw1MCAxMFoiIGZpbGw9InJnYmEoODUsIDEwNywgNzgsIDAuMDUpIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI3BhdHRlcm4pIi8+PC9zdmc+'); opacity: 0.5;"></div>
+    </div>
+
+    <div class="mt-4">
+      <button onclick="shareWhatsApp()" class="btn w-100 py-3 rounded-custom shadow-custom-md mb-3 hover-lift" style="background-color: #25D366; color: white;">
+        <div class="d-flex align-items-center justify-content-center gap-2">
+          <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">
+            share
+          </span>
+          Bagikan ke WhatsApp
+        </div>
+      </button>
+      <button onclick="window.location.href='history.html'" class="btn bg-surface-container-high text-on-surface font-label-md w-100 py-3 rounded-custom shadow-sm mb-3 hover-lift">
+        <span class="material-symbols-outlined align-middle me-2" style="font-size: 20px;">history</span>
+        Lihat Riwayat Trip
+      </button>
+
+      <p class="text-center small text-secondary-custom mb-0 d-flex align-items-center justify-content-center gap-1">
+        <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
+        Data rincian otomatis tersimpan di Riwayat
+      </p>
+
+    </div>
+  </main>
+
+  <footer class="bg-surface-container-lowest border-top border-surface-variant px-3">
+    <div class="container-fluid max-w-container mx-auto py-3 px-3">
+      <div class="row g-3 align-items-center">
+        <div class="col-12 col-md-6 text-center text-md-start">
+          <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start mb-2">
+            <span class="material-symbols-outlined text-primary-custom" style="font-variation-settings: 'FILL' 1;">terrain</span>
+            <span class="font-label-md fw-bold text-primary-custom">SiPuncak</span>
+          </div>
+          <p class="font-label-sm text-secondary-custom mb-0">© 2026 SiPuncak. All rights reserved.</p>
+        </div>
+        <div class="col-12 col-md-6">
+          <div class="d-flex justify-content-center justify-content-md-end gap-3">
+            <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Privacy Policy</a>
+            <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Terms of Service</a>
+            <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Help Center</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    document.querySelectorAll('button.material-symbols-outlined').forEach(btn => {
+      btn.addEventListener('click', function () {
+        const originalIcon = this.textContent;
+        this.textContent = 'check';
+        this.classList.add('text-success');
+        setTimeout(() => {
+          this.textContent = originalIcon;
+          this.classList.remove('text-success');
+        }, 1500);
+      });
+    });
+  </script>
+  <script>
+    const roomData = JSON.parse(localStorage.getItem("roomData"));
+
+    function rupiah(num) {
+      return "Rp " + num.toLocaleString("id-ID");
+    }
+
+    function renderReceipt() {
+      const container = document.getElementById("receiptItems");
+      container.innerHTML = "";
+
+      if (!roomData || !roomData.items || roomData.items.length === 0) {
+        container.innerHTML = `
+            <p class="text-secondary-custom text-center">
+                Belum ada transaksi
+            </p>
+        `;
+        return;
+      }
+
+      const subtotal = roomData.items.reduce((sum, item) => sum + item.totalprice, 0);
+      const tax = subtotal * ((roomData.tax || 0) / 100);
+      const fee = roomData.fee || 0;
+      const discount = roomData.discount || 0;
+
+      const userBills = {};
+
+      roomData.items.forEach((item) => {
+        if (!userBills[item.user]) {
+          userBills[item.user] = {
+            foods: [],
+            subtotal: 0
+          };
+        }
+        userBills[item.user].foods.push(item);
+        userBills[item.user].subtotal += item.totalprice;
+      });
+
+      Object.keys(userBills).forEach((user) => {
+        const person = userBills[user];
+        const ratio = person.subtotal / subtotal;
+
+        const finalTotal = person.subtotal + (tax * ratio) + (fee * ratio) - (discount * ratio);
+
+        container.innerHTML += `
+            <div class="mb-3">
+                <div class="d-flex justify-content-between fw-bold mb-2">
+                    <span>${user}</span>
+                    <span class="text-primary-custom">${rupiah(Math.round(finalTotal))}</span>
+                </div>
+                <ul class="list-unstyled ms-3 ps-3 border-start">
+                    ${person.foods.map(food => `
+                        <li class="d-flex justify-content-between small text-secondary-custom mb-1">
+                            <span>${food.food} (${food.qty}x @ ${rupiah(food.price)})</span>
+                            <span>${rupiah(food.totalprice)}</span>
+                        </li>
+                    `).join("")}
+                </ul>
+            </div>
+        `;
+      });
+    }
+
+    function renderTotal() {
+      const subtotal = roomData.items.reduce((a, b) => a + b.totalprice, 0);
+      const tax = subtotal * ((roomData.tax || 0) / 100);
+      const discount = roomData.discount || 0;
+      const fee = roomData.fee || 0;
+      const total = subtotal + tax + fee - discount;
+
+      document.getElementById("subtotalBill").innerText = rupiah(subtotal);
+      document.getElementById("taxBill").innerText = rupiah(tax);
+      document.getElementById("discountBill").innerText = "- " + rupiah(discount);
+      document.getElementById("feesBill").innerText = rupiah(fee);
+      document.getElementById("totalBill").innerText = rupiah(total);
+    }
+
+    renderReceipt();
+
+    function saveToHistory() {
+      let history = JSON.parse(localStorage.getItem("historyData")) || [];
+      const subtotal = roomData.items.reduce((sum, item) => sum + item.totalprice, 0);
+      const tax = subtotal * (roomData.tax || 0) / 100;
+      const total = subtotal + tax + (roomData.fee || 0) - (roomData.discount || 0);
+
+      const data = {
+        id: Date.now(),
+        roomName: roomData.roomName,
+        date: new Date().toLocaleDateString("id-ID"),
+        users: roomData.users,
+        total,
+        roomData: JSON.parse(JSON.stringify(roomData))
+      };
+
+      const alreadyExist = history.some(item =>
+        item.date === data.date && item.roomName === data.roomName
+      );
+
+      if (!alreadyExist) {
+        history.unshift(data);
+        localStorage.setItem("historyData", JSON.stringify(history));
+      }
+    }
+
+    renderTotal();
+
+    document.getElementById("hostTransfer").innerText = `Transfer ke Ketua Tim (${roomData.host})`;
+    const bankInfo = roomData.bankname ? `${roomData.bankname} - ${roomData.rekening}` : roomData.rekening;
+    document.getElementById("rekeningText").innerText = bankInfo;
+
+    saveToHistory();
+    document.getElementById("transactionDate").innerText = new Date().toLocaleDateString("id-ID", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+  </script>
+  <script>
+    function shareWhatsApp() {
+      let text = `⛰️ ${roomData.roomName}\n\n📋 RINCIAN PATUNGAN PERALATAN\n━━━━━━━━━━\n\n`;
+
+      const subtotal = roomData.items.reduce((sum, item) => sum + item.totalprice, 0);
+      const tax = subtotal * ((roomData.tax || 0) / 100);
+      const fee = roomData.fee || 0;
+      const discount = roomData.discount || 0;
+
+      const userBills = {};
+
+      roomData.items.forEach(item => {
+        if (!userBills[item.user]) {
+          userBills[item.user] = {
+            items: [],
+            subtotal: 0
+          };
+        }
+        userBills[item.user].items.push(item);
+        userBills[item.user].subtotal += item.totalprice;
+      });
+
+      Object.keys(userBills).forEach(user => {
+        const person = userBills[user];
+        const ratio = person.subtotal / subtotal;
+        const total = Math.round(person.subtotal + (tax * ratio) + (fee * ratio) - (discount * ratio));
+
+        text += `🎒 ${user}\n`;
+        person.items.forEach(item => {
+          text += `• ${item.food}\n  ${item.qty} × ${rupiah(item.price)} = ${rupiah(item.totalprice)}\n`;
+        });
+        text += `Total → ${rupiah(total)}\n\n`;
+      });
+
+      const grand = subtotal + tax + fee - discount;
+
+      text += `━━━━━━━━━━\n`;
+      text += `Subtotal : ${rupiah(subtotal)}\n`;
+      text += `Pajak : ${rupiah(tax)}\n`;
+      text += `Diskon : -${rupiah(discount)}\n`;
+      text += `Biaya Tambahan : ${rupiah(fee)}\n\n`;
+      text += `💰 TOTAL KESELURUHAN\n${rupiah(grand)}\n\n`;
+      text += `💳 Transfer ke:\n${roomData.bankname || 'Bank/E-Wallet'}\n${roomData.rekening}\n\n`;
+      text += `Selamat mendaki! 🏔️⛺`;
+
+      window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
+    }
+  </script>
+</body>
+
+</html>
