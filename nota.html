@@ -100,8 +100,8 @@
                 <span id="rekeningText" class="font-label-md fw-bold text-on-surface">
                   -
                 </span>
-                <button class="btn btn-sm text-primary-custom p-0 border-0 hover-lift">
-                  <span class="material-symbols-outlined">content_copy</span>
+                <button onclick="copyToClipboard()" class="btn btn-sm text-primary-custom p-0 border-0 shadow-custom">
+                  <span id="copyIcon" class="material-symbols-outlined">content_copy</span>
                 </button>
               </div>
             </div>
@@ -113,7 +113,7 @@
     </div>
 
     <div class="mt-4">
-      <button onclick="shareWhatsApp()" class="btn w-100 py-3 rounded-custom shadow-custom-md mb-3 hover-lift" style="background-color: #25D366; color: white;">
+      <button onclick="shareWhatsApp()" class="btn w-100 py-3 rounded-custom shadow-custom-md mb-3 shadow-custom-sm" style="background-color: #25D366; color: white;">
         <div class="d-flex align-items-center justify-content-center gap-2">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">
             share
@@ -121,10 +121,16 @@
           Bagikan ke WhatsApp
         </div>
       </button>
-      <button onclick="window.location.href='history.html'" class="btn bg-surface-container-high text-on-surface font-label-md w-100 py-3 rounded-custom shadow-sm mb-3 hover-lift">
+      <button onclick="window.location.href='history.html'" class="btn bg-surface-container-lowest border border-surface-variant w-100 py-3 rounded-custom font-label-md text-nowrap shadow-custom">
         <span class="material-symbols-outlined align-middle me-2" style="font-size: 20px;">history</span>
         Lihat Riwayat Trip
       </button>
+      <a class="btn w-100 my-3 d-flex align-items-center justify-content-center gap-2 py-2 text-secondary-custom font-label-md text-decoration-none shadow-custom rounded-3" href="index.html">
+        <span class="material-symbols-outlined" style="font-size: 18px;">
+            arrow_back
+        </span>
+        <span>Kembali ke Beranda</span>
+      </a>
 
       <p class="text-center small text-secondary-custom mb-0 d-flex align-items-center justify-content-center gap-1">
         <span class="material-symbols-outlined" style="font-size: 16px;">check_circle</span>
@@ -142,13 +148,13 @@
             <span class="material-symbols-outlined text-primary-custom" style="font-variation-settings: 'FILL' 1;">terrain</span>
             <span class="font-label-md fw-bold text-primary-custom">SiPuncak</span>
           </div>
-          <p class="font-label-sm text-secondary-custom mb-0">&copy; 2026 SiPuncak. All rights reserved.</p>
+          <p class="font-label-sm text-secondary-custom mb-0">© 2026 SiPuncak. All rights reserved.</p>
         </div>
         <div class="col-12 col-md-6">
           <div class="d-flex justify-content-center justify-content-md-end gap-3">
-            <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Privacy Policy</a>
-            <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Terms of Service</a>
-            <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Help Center</a>
+            <a class="font-label-sm text-secondary-custom text-decoration-none hover-color" href="#">Privacy Policy</a>
+            <a class="font-label-sm text-secondary-custom text-decoration-none hover-color" href="#">Terms of Service</a>
+            <a class="font-label-sm text-secondary-custom text-decoration-none hover-color" href="#">Help Center</a>
           </div>
         </div>
       </div>
@@ -158,18 +164,25 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
   <script>
-    document.querySelectorAll('button.material-symbols-outlined').forEach(btn => {
-      btn.addEventListener('click', function () {
-        const originalIcon = this.textContent;
-        this.textContent = 'check';
-        this.classList.add('text-success');
+    function copyToClipboard() {
+      const rekeningText = document.getElementById("rekeningText").innerText;
+      const copyIcon = document.getElementById("copyIcon");
+      
+      navigator.clipboard.writeText(rekeningText).then(() => {
+        copyIcon.textContent = 'check';
+        copyIcon.classList.add('text-success');
+        
         setTimeout(() => {
-          this.textContent = originalIcon;
-          this.classList.remove('text-success');
+          copyIcon.textContent = 'content_copy';
+          copyIcon.classList.remove('text-success');
         }, 1500);
+      }).catch(err => {
+        alert('Gagal menyalin ke clipboard');
+        console.error('Error copying text: ', err);
       });
-    });
+    }
   </script>
+
   <script>
     const roomData = JSON.parse(localStorage.getItem("roomData"));
 
@@ -194,39 +207,42 @@
       const tax = subtotal * ((roomData.tax || 0) / 100);
       const fee = roomData.fee || 0;
       const discount = roomData.discount || 0;
+      const grandTotal = subtotal + tax + fee - discount;
+
+      const totalMembers = roomData.users.length;
+      
+      const perMemberShare = grandTotal / totalMembers;
 
       const userBills = {};
 
+      roomData.users.forEach(user => {
+        userBills[user] = {
+          equipment: [],
+          subtotal: 0
+        };
+      });
+
       roomData.items.forEach((item) => {
-        if (!userBills[item.user]) {
-          userBills[item.user] = {
-            foods: [],
-            subtotal: 0
-          };
-        }
-        userBills[item.user].foods.push(item);
+        userBills[item.user].equipment.push(item);
         userBills[item.user].subtotal += item.totalprice;
       });
 
       Object.keys(userBills).forEach((user) => {
         const person = userBills[user];
-        const ratio = person.subtotal / subtotal;
-
-        const finalTotal = person.subtotal + (tax * ratio) + (fee * ratio) - (discount * ratio);
 
         container.innerHTML += `
             <div class="mb-3">
                 <div class="d-flex justify-content-between fw-bold mb-2">
                     <span>${user}</span>
-                    <span class="text-primary-custom">${rupiah(Math.round(finalTotal))}</span>
+                    <span class="text-primary-custom">${rupiah(Math.round(perMemberShare))}</span>
                 </div>
                 <ul class="list-unstyled ms-3 ps-3 border-start">
-                    ${person.foods.map(food => `
+                    ${person.equipment.length > 0 ? person.equipment.map(equip => `
                         <li class="d-flex justify-content-between small text-secondary-custom mb-1">
-                            <span>${food.food} (${food.qty}x @ ${rupiah(food.price)})</span>
-                            <span>${rupiah(food.totalprice)}</span>
+                            <span>${equip.equip} (${equip.qty}x @ ${rupiah(equip.price)})</span>
+                            <span>${rupiah(equip.totalprice)}</span>
                         </li>
-                    `).join("")}
+                    `).join("") : '<li class="small text-secondary-custom fst-italic">Tidak ada item</li>'}
                 </ul>
             </div>
         `;
@@ -289,48 +305,58 @@
   </script>
   <script>
     function shareWhatsApp() {
-      let text = `⛰️ ${roomData.roomName}\n\n📋 RINCIAN PATUNGAN PERALATAN\n━━━━━━━━━━\n\n`;
+      let text = `${roomData.roomName}\n\n`;
+      text += `RINCIAN PATUNGAN PERALATAN\n`;
+      text += `------------------------------------------\n\n`;
 
       const subtotal = roomData.items.reduce((sum, item) => sum + item.totalprice, 0);
       const tax = subtotal * ((roomData.tax || 0) / 100);
       const fee = roomData.fee || 0;
       const discount = roomData.discount || 0;
+      const grandTotal = subtotal + tax + fee - discount;
+
+      const totalMembers = roomData.users.length;
+      
+      const perMemberShare = grandTotal / totalMembers;
 
       const userBills = {};
 
+      roomData.users.forEach(user => {
+        userBills[user] = {
+          items: [],
+          subtotal: 0
+        };
+      });
+
       roomData.items.forEach(item => {
-        if (!userBills[item.user]) {
-          userBills[item.user] = {
-            items: [],
-            subtotal: 0
-          };
-        }
         userBills[item.user].items.push(item);
         userBills[item.user].subtotal += item.totalprice;
       });
 
       Object.keys(userBills).forEach(user => {
         const person = userBills[user];
-        const ratio = person.subtotal / subtotal;
-        const total = Math.round(person.subtotal + (tax * ratio) + (fee * ratio) - (discount * ratio));
 
-        text += `🎒 ${user}\n`;
-        person.items.forEach(item => {
-          text += `• ${item.food}\n  ${item.qty} × ${rupiah(item.price)} = ${rupiah(item.totalprice)}\n`;
-        });
-        text += `Total → ${rupiah(total)}\n\n`;
+        text += `${user}\n`;
+        if (person.items.length > 0) {
+          person.items.forEach(item => {
+            text += `- ${item.equip}\n`;
+            text += `  ${item.qty} x ${rupiah(item.price)} = ${rupiah(item.totalprice)}\n`;
+          });
+        } else {
+          text += `- Tidak ada item\n`;
+        }
+        text += `Total -> ${rupiah(Math.round(perMemberShare))}\n\n`;
       });
 
-      const grand = subtotal + tax + fee - discount;
-
-      text += `━━━━━━━━━━\n`;
+      text += `------------------------------------------\n`;
       text += `Subtotal : ${rupiah(subtotal)}\n`;
       text += `Pajak : ${rupiah(tax)}\n`;
       text += `Diskon : -${rupiah(discount)}\n`;
       text += `Biaya Tambahan : ${rupiah(fee)}\n\n`;
-      text += `💰 TOTAL KESELURUHAN\n${rupiah(grand)}\n\n`;
-      text += `💳 Transfer ke:\n${roomData.bankname || 'Bank/E-Wallet'}\n${roomData.rekening}\n\n`;
-      text += `Selamat mendaki! 🏔️⛺`;
+      text += `TOTAL KESELURUHAN\n${rupiah(grandTotal)}\n\n`;
+      text += `Transfer ke:\n${roomData.bankname || 'Bank/E-Wallet'}\n${roomData.rekening}\n\n`;
+      text += `*Total ${totalMembers} anggota\n\n`;
+      text += `Selamat mendaki!`;
 
       window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
     }

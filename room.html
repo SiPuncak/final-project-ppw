@@ -26,7 +26,7 @@
 
     <main class="flex-grow-1 d-flex flex-column flex-md-row w-100 mx-auto overflow-hidden" style="max-width: 1440px;">
 
-        <section class="w-100 p-4 bg-surface-container-lowest overflow-auto no-scrollbar" style="flex: 1 1 60%;">
+        <section class="w-100 p-4 bg-surface-container-lowest overflow-auto no-scrollbar" style="flex: 1 1 65%;">
             <div class="d-flex flex-column gap-3">
 
                 <div class="d-flex align-items-center justify-content-between">
@@ -39,7 +39,7 @@
                         </div>
                         <p class="font-label-sm text-secondary-custom mb-0">Kelola peralatan pendakian bersama tim</p>
                     </div>
-                    <button onclick="joinFake()" class="btn btn-active d-flex align-items-center gap-2 px-3 py-2 bg-secondary-container rounded-custom hover-lift">
+                    <button onclick="joinFake()" class="btn btn-active d-flex align-items-center gap-2 px-3 py-2 bg-secondary-container rounded-custom shadow-custom">
                         <span class="material-symbols-outlined">
                             group_add
                         </span>
@@ -48,11 +48,11 @@
                 </div>
 
                 <div class="bg-surface-container-low p-3 rounded-custom d-flex flex-wrap gap-2 align-items-end">
-                    <div class="flex-grow-1" style="min-width: 160px;">
+                    <div class="flex-grow-1" style="min-width: 140px;">
                         <label class="font-label-sm text-secondary-custom mb-2 d-block ps-2">Nama Peralatan</label>
-                        <input id="foodInput" class="form-control bg-surface-container-lowest border-surface-variant rounded-3 px-3 py-2 font-label-md fw-medium" placeholder="e.g., Tenda Dome 4P" type="text">
+                        <input id="equipInput" class="form-control bg-surface-container-lowest border-surface-variant rounded-3 px-3 py-2 font-label-md fw-medium" placeholder="e.g., Tenda Dome 4P" type="text">
                     </div>
-                    <div style="width: 100%; max-width: 140px;">
+                    <div style="width: 100%; max-width: 160px;">
                         <label class="font-label-sm text-secondary-custom mb-2 d-block ps-2">Harga Sewa/Beli</label>
                         <div class="position-relative">
                             <span class="position-absolute font-label-md text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">Rp</span>
@@ -68,7 +68,7 @@
                         <input id="qtyInput" class="form-control bg-surface-container-lowest border-surface-variant rounded-3 font-label-md text-on-surface" style="padding: 8px; padding-left: 13px;" placeholder="1" type="number">
                     </div>
                     <div class="ms-auto pt-3">
-                        <button onclick="addItem()" class="btn btn-active d-flex align-items-center justify-content-center bg-primary-container text-white rounded-custom floating-shadow hover-lift" style="width: 48px; height: 48px;">
+                        <button onclick="addItem()" class="btn btn-active d-flex align-items-center justify-content-center bg-primary-container text-white rounded-3 floating-shadow shadow-custom-2" style="width: 35px; height: 35px;">
                             <span class="material-symbols-outlined" style="font-size: 28px; font-variation-settings: 'FILL' 1;">add</span>
                         </button>
                     </div>
@@ -90,7 +90,7 @@
             </div>
         </section>
 
-        <aside class="w-100 bg-surface-container-low p-3 d-flex flex-column gap-3 border-start border-surface-variant border-opacity-25" style="flex: 1 1 40%;">
+        <aside class="w-100 bg-surface-container-low p-3 d-flex flex-column gap-3 border-start border-surface-variant border-opacity-25" style="flex: 1 1 35%;">
 
             <div class="bg-surface-container-lowest p-3 rounded-custom floating-shadow">
                 <div class="mb-3">
@@ -131,12 +131,12 @@
                         <span id="fees">Rp 0</span>
                     </div>
                     <div class="pt-2 border-top border-surface-variant d-flex justify-content-between align-items-center">
-                        <span class="font-headline-md text-on-surface">Total Keseluruhan</span>
-                        <span id="grandTotal" class="fw-bold text-primary-custom" style="font-size: 32px;">Rp 0</span>
+                        <span class="font-body-md fw-bold text-on-primary-container">Total Keseluruhan</span>
+                        <span id="grandTotal" class="fw-bold text-primary-custom" style="font-size: 20px;">Rp 0</span>
                     </div>
                 </div>
                 <div class="d-flex flex-column gap-2">
-                    <button id="lockRoomBtn" class="btn btn-active w-100 py-3 rounded-custom d-flex align-items-center justify-content-center gap-3 floating-shadow hover-lift" style="background-color: var(--color-primary-container); color: white;">
+                    <button id="lockRoomBtn" class="btn btn-active w-100 py-3 rounded-custom d-flex align-items-center justify-content-center gap-3 floating-shadow shadow-custom-2" style="background-color: var(--color-primary-container); color: white;">
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lock</span>
                         <span class="font-headline-md">Selesai & Kunci Trip</span>
                     </button>
@@ -154,13 +154,13 @@
                         <span class="material-symbols-outlined text-primary-custom" style="font-variation-settings: 'FILL' 1;">terrain</span>
                         <span class="font-label-md fw-bold text-primary-custom">SiPuncak</span>
                     </div>
-                    <p class="font-label-sm text-secondary-custom mb-0">&copy; 2026 SiPuncak. All rights reserved.</p>
+                    <p class="font-label-sm text-secondary-custom mb-0">© 2026 SiPuncak. All rights reserved.</p>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="d-flex justify-content-center justify-content-md-end gap-3">
-                        <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Privacy Policy</a>
-                        <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Terms of Service</a>
-                        <a class="font-label-sm text-secondary-custom text-decoration-none" href="#">Help Center</a>
+                        <a class="font-label-sm text-secondary-custom text-decoration-none hover-color" href="#">Privacy Policy</a>
+                        <a class="font-label-sm text-secondary-custom text-decoration-none hover-color" href="#">Terms of Service</a>
+                        <a class="font-label-sm text-secondary-custom text-decoration-none hover-color" href="#">Help Center</a>
                     </div>
                 </div>
             </div>
@@ -201,32 +201,32 @@
         }
 
         function addItem() {
-            const food = document.getElementById("foodInput").value.trim();
+            const equip = document.getElementById("equipInput").value.trim();
             let price = Number(document.getElementById("priceInput").value);
             const user = document.getElementById("userInput").value;
             const qty = Number(document.getElementById("qtyInput").value || 1);
             let totalprice = 0;
 
-            if (food === "" || price <= 0) {
+            if (equip === "" || price <= 0) {
                 alert("Isi nama barang dan harga terlebih dahulu.");
                 return;
             }
 
             const isDuplicate = roomData.items.some(item => 
-                item.food.toLowerCase() === food.toLowerCase() && 
+                item.equip.toLowerCase() === equip.toLowerCase() && 
                 item.user === user && 
                 item.price === price
             );
 
             if (isDuplicate) {
-                alert(`Item "${food}" untuk ${user} dengan harga ${rupiah(price)} sudah ada di list!\n\nGunakan nama berbeda atau edit qty item yang sudah ada.`);
+                alert(`Item "${equip}" untuk ${user} dengan harga ${rupiah(price)} sudah ada di list!\n\nGunakan nama berbeda atau edit qty item yang sudah ada.`);
                 return;
             }
 
             totalprice = price * qty;
 
             roomData.items.push({
-                food,   
+                equip,   
                 price,
                 totalprice,
                 user,
@@ -238,7 +238,7 @@
             renderItems();
             updateTotal();
 
-            document.getElementById("foodInput").value = "";
+            document.getElementById("equipInput").value = "";
             document.getElementById("priceInput").value = "";
             document.getElementById("qtyInput").value = "";
         }
@@ -247,23 +247,37 @@
             const list = document.getElementById("itemList");
             list.innerHTML = "";
 
-            roomData.items.forEach((item) => {
-                list.innerHTML += `
-                <div class="bg-surface-container-lowest p-3 rounded-custom card-shadow border border-surface-variant border-opacity-25 d-flex justify-content-between align-items-center">
-                    <div>
-                        <span class="bg-primary-fixed px-2 py-1 fw-medium rounded-pill medium">${item.user}</span>
-                        <div class="d-flex gap-2 mt-1">
-                            <p class="fw-semibold mb-1">${item.food} - ${item.qty} × </p>
-                            
-                            <span class="text-primary-custom fw-semibold">${rupiah(item.price)}</span>
+            if (roomData.items.length > 0) {
+                roomData.items.forEach((item, index) => {
+                    list.innerHTML += `
+                    <div class="bg-surface-container-lowest p-3 rounded-custom card-shadow border border-surface-variant border-opacity-25 d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="bg-primary-fixed px-2 py-1 fw-medium rounded medium">${item.user}</span>
+                            <div class="d-flex gap-2 mt-1">
+                                <p class="fw-semibold mb-1">${item.equip} - ${item.qty} × </p>
+                                
+                                <span class="text-primary-custom fw-semibold">${rupiah(item.price)}</span>
+                            </div>
+                            <div class="ms-auto">
+                                <span class="text-primary-custom fw-semibold">${rupiah(item.totalprice)}</span>
+                            </div>
                         </div>
-                        <div class="ms-auto">
-                            <span class="text-primary-custom fw-semibold">${rupiah(item.totalprice)}</span>
-                        </div>
+                        <button onclick="deleteItem(${index})" class="btn btn-sm text-danger p-2 outline-danger rounded-circle" style="min-width: 40px;">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">delete</span>
+                        </button>
                     </div>
-                </div>
-            `;
-            });
+                `;
+                });
+
+                list.innerHTML += `
+                    <div class="d-flex justify-content-center mt-3">
+                        <button onclick="deleteAllItems()" class="btn btn-outline-danger px-4 py-2 rounded-custom d-flex align-items-center gap-2">
+                            <span class="material-symbols-outlined" style="font-size: 20px;">delete_sweep</span>
+                            Hapus Semua
+                        </button>
+                    </div>
+                `;
+            }
         }
 
         function updateTotal() {
@@ -290,19 +304,52 @@
         document.getElementById("extraFee").addEventListener("input", updateTotal);
 
         function lockRoom() {
+            if (roomData.items.length === 0) {
+                alert("Tidak dapat mengunci trip!\n\nMinimal harus ada 1 barang dalam daftar peralatan.");
+                return;
+            }
+
+            if (roomData.users.length < 2) {
+                alert("Tidak dapat mengunci trip!\n\nMinimal harus ada 2 anggota dalam trip ini.\nSilakan tambah anggota terlebih dahulu.");
+                return;
+            }
+
             localStorage.setItem("roomData", JSON.stringify(roomData));
             window.location.href = "nota.html";
         }
 
-        document.getElementById("roomTitle").innerText = `Trip - ${roomData.roomName}`;
+        document.getElementById("roomTitle").innerText = `Trip ${roomData.roomName}`;
 
         renderUsers();
 
         document.getElementById("lockRoomBtn").addEventListener("click", lockRoom);
 
+        function deleteItem(index) {
+            if (confirm("Hapus item ini dari daftar?")) {
+                roomData.items.splice(index, 1);
+                renderItems();
+                updateTotal();
+            }
+        }
+
+        function deleteAllItems() {
+            if (confirm("Hapus semua item dari daftar peralatan?")) {
+                roomData.items = [];
+                renderItems();
+                updateTotal();
+            }
+        }
+
         function joinFake() {
             const nama = prompt("Nama anggota:");
             if (!nama) return;
+
+            const isDuplicate = roomData.users.some(user => user.toLowerCase() === nama.toLowerCase());
+            
+            if (isDuplicate) {
+                alert("Nama anggota sudah ada di list!\nGunakan nama yang berbeda.");
+                return;
+            }
 
             roomData.users.push(nama);
             localStorage.setItem("roomData", JSON.stringify(roomData));
