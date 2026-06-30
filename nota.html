@@ -11,13 +11,14 @@
   <link href="style.css" rel="stylesheet">
 </head>
 
-<body class="bg-surface">
+<body class="bg-surface mountain-pattern">
 
-  <header class="bg-primary-container sticky-top p-2 px-3 shadow-sm">
-    <div class="container-fluid max-w-container mx-auto py-2 px-3">
-      <div class="d-flex align-items-center gap-2 font-headline-md fw-bold text-on-primary">
-        <span class="material-symbols-outlined" style="font-size: 28px; font-variation-settings: 'FILL' 1;">terrain</span>
-        <span>SiPuncak</span>
+  <header class="fixed-top bg-primary-container p-2 px-3 shadow-sm">
+    <div class="container-fluid max-w-container mx-auto py-2 px-3" style="height: 64px;">
+      <div class="d-flex justify-content-between align-items-center h-100">
+        <div class="mt-2 mb-2">
+          <img src="logosipuncak.png" alt="logo SiPuncak" style="width: 150px;">
+        </div>
       </div>
     </div>
   </header>
@@ -113,7 +114,7 @@
     </div>
 
     <div class="mt-4">
-      <button onclick="shareWhatsApp()" class="btn w-100 py-3 rounded-custom shadow-custom-md mb-3 shadow-custom-sm" style="background-color: #4a6741; color: white;">
+      <button onclick="shareWhatsApp()" class="btn w-100 py-3 rounded-custom shadow-custom-md mb-3 shadow-custom-sm shadow-custom-2" style="background-color: #4a6741; color: white;">
         <div class="d-flex align-items-center justify-content-center gap-2">
           <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">
             share
@@ -125,7 +126,7 @@
         <span class="material-symbols-outlined align-middle me-2" style="font-size: 20px;">history</span>
         Lihat Riwayat Trip
       </button>
-      <a class="btn w-100 my-3 d-flex align-items-center justify-content-center gap-2 py-2 text-secondary-custom font-label-md text-decoration-none shadow-custom rounded-3" href="index.html">
+      <a class="btn w-100 my-3 d-flex align-items-center justify-content-center gap-2 py-2 text-secondary-custom font-label-md text-decoration-none rounded-3 hover-zoom-2" href="index.html">
         <span class="material-symbols-outlined" style="font-size: 18px;">
             arrow_back
         </span>
@@ -144,17 +145,16 @@
     <div class="container-fluid max-w-container mx-auto py-3 px-3">
       <div class="row g-3 align-items-center">
         <div class="col-12 col-md-6 text-center text-md-start">
-          <div class="d-flex align-items-center gap-2 justify-content-center justify-content-md-start mb-2">
-            <span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">terrain</span>
-            <span class="font-label-md fw-bold text-on-primary">SiPuncak</span>
+          <div class="mb-2">
+            <img src="logosipuncak.png" alt="logo SiPuncak" style="width: 100px;">
           </div>
           <p class="font-label-sm text-on-primary mb-0">© 2026 SiPuncak. All rights reserved.</p>
         </div>
         <div class="col-12 col-md-6">
           <div class="d-flex justify-content-center justify-content-md-end gap-3">
-            <a class="font-label-sm text-on-primary text-decoration-none hover-color" href="#">Privacy Policy</a>
-            <a class="font-label-sm text-on-primary text-decoration-none hover-color" href="#">Terms of Service</a>
-            <a class="font-label-sm text-on-primary text-decoration-none hover-color" href="#">Help Center</a>
+            <a class="font-label-sm text-on-primary text-decoration-none hover-text" href="#">Privacy Policy</a>
+            <a class="font-label-sm text-on-primary text-decoration-none hover-text" href="#">Terms of Service</a>
+            <a class="font-label-sm text-on-primary text-decoration-none hover-text" href="#">Help Center</a>
           </div>
         </div>
       </div>
