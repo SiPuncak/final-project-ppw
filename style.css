@@ -1,7 +1,6 @@
 :root {
     --color-tertiary-fixed-dim: #c5c6c8;
     --color-inverse-on-surface: #f0f1f1;
-    --color-surface-container-lowest: #ffffff;
     --color-secondary: #5f5e5e;
     --color-surface-dim: #d8e3d8;
     --color-secondary-fixed: #e8ede8;
@@ -13,7 +12,6 @@
     --color-tertiary-fixed: #e1e2e4;
     --color-surface-variant: #e2e5e2;
     --color-primary: #556b4e;
-    --color-surface-container-highest: #e2e5e2;
     --color-on-background: #1a1c1a;
     --color-on-tertiary-container: #343739;
     --color-error: #ba1a1a;
@@ -26,9 +24,7 @@
     --color-on-secondary-container: #4a5447;
     --color-surface-container: #eef2ee;
     --color-on-secondary-fixed: #1c1f1c;
-    --color-surface-container-high: #e8ede8;
     --color-tertiary-container: #9ea0a2;
-    --color-surface-container-low: #f3f6f3;
     --color-on-tertiary-fixed: #191c1e;
     --color-on-secondary-fixed-variant: #474946;
     --color-on-primary-container: #2d3e28;
@@ -64,20 +60,8 @@ body {
     background-color: var(--color-surface) !important;
 }
 
-.bg-surface-container-lowest {
-    background-color: var(--color-surface-container-lowest) !important;
-}
-
-.bg-surface-container-low {
-    background-color: var(--color-surface-container-low) !important;
-}
-
 .bg-surface-container {
     background-color: var(--color-surface-container) !important;
-}
-
-.bg-surface-container-high {
-    background-color: var(--color-surface-container-high) !important;
 }
 
 .bg-primary-container {
@@ -171,7 +155,7 @@ body {
 
 .shadow-custom:hover {
     background-color: var(--color-army-green) !important;
-    color: var(--color-surface-container-lowest) !important; 
+    color: white !important; 
 }
 
 .shadow-custom-2 {
@@ -354,7 +338,7 @@ body {
 }
 
 .active-pill {
-    background-color: var(--color-primary-container);
+    background-color: var(--color-primary-container) !important;
     color: white;
     border: none !important;
 }
@@ -381,3 +365,33 @@ body {
     box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
+.carousel-control-prev,
+.carousel-control-next {
+    width: auto;
+    opacity: 1;
+}
+
+.carousel-control-prev:hover > div,
+.carousel-control-next:hover > div {
+    background-color: var(--color-primary);
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: var(--color-primary-container);
+    opacity: 0.5;
+    border: none;
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+    background-color: var(--color-primary-container);
+}
+
+.carousel-item {
+    transition: transform 0.6s ease-in-out;
+}
