@@ -62,11 +62,11 @@
         <div id="historyList" class="d-flex flex-column gap-3 px-2"></div>
 
         <div id="page" class="mt-5 d-flex justify-content-center align-items-center gap-3" style="padding-bottom: 160px;">
-            <button id="prevPage" class="btn border border-surface-variant rounded-circle p-0 text-nowrap shadow-custom" style="width: 40px; height: 40px;">
+            <button id="prevPage" class="btn border border-surface-variant rounded-circle p-0 text-nowrap shadow-custom bg-white" style="width: 40px; height: 40px;">
                 <span class="material-symbols-outlined">chevron_left</span>
             </button>
             <span id="pageInfo" class="font-label-md text-on-surface">Page 1 of 1</span>
-            <button id="nextPage" class="btn border border-surface-variant rounded-circle p-0 text-nowrap shadow-custom" style="width: 40px; height: 40px;">
+            <button id="nextPage" class="btn border border-surface-variant rounded-circle p-0 text-nowrap shadow-custom bg-white" style="width: 40px; height: 40px;">
                 <span class="material-symbols-outlined">chevron_right</span>
             </button>
         </div>
@@ -140,9 +140,11 @@
                     </div>
                 `;
                 document.getElementById("pageInfo").innerText = "Page 1 of 1";
-                document.getElementById("page").classList.add("d-none")
+                document.getElementById("page").classList.add("d-none");
                 return;
             }
+
+            document.getElementById("page").classList.remove("d-none");
 
             const start = (currentPage - 1) * perPage;
             const end = start + perPage;
@@ -202,7 +204,7 @@
         }
 
         function applyFilterAndSearch(days = 0) {
-            const searchInput = document.querySelector('input[placeholder="Search sessions..."]');
+            const searchInput = document.querySelector('input[placeholder="Cari trip..."]');
             const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
 
             const now = new Date();
