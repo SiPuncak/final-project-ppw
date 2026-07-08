@@ -17,80 +17,126 @@
         <div class="container-fluid max-w-container mx-auto py-2 px-3">
             <div class="d-flex justify-content-between align-items-center">
                 <div class="mt-2 mb-2">
-                    <img src="logosipuncak.png" alt="logo SiPuncak" style="width: 150px;">
+                    <img src="logosipuncak.png" alt="logo SiPuncak" style="width: clamp(110px, 20vw, 150px);">
                 </div>
             </div>
         </div>
     </header>
 
-    <main class="flex-grow-1 d-flex flex-column flex-md-row w-100 mx-auto overflow-hidden" style="max-width: 1440px;">
+    <main class="flex-grow-1 d-flex room-main-layout w-100 mx-auto overflow-hidden" style="max-width: 1440px;">
 
-        <section class="w-100 p-4 bg-surface overflow-auto no-scrollbar" style="flex: 1 1 65%;">
+        <section class="w-100 p-3 p-md-4 bg-surface overflow-auto no-scrollbar" style="flex: 1 1 65%;">
             <div class="d-flex flex-column gap-3">
 
-                <div class="d-flex align-items-center justify-content-between">
-                    <div>
-                        <div class="d-flex align-items-center gap-2 mb-1">
-                            <span class="material-symbols-outlined text-primary-custom" style="font-size: 32px; font-variation-settings: 'FILL' 1;">landscape</span>
-                            <h1 id="roomTitle" class="font-headline-lg text-on-surface mb-0">
+                <div class="d-flex align-items-center justify-content-between gap-2 flex-wrap">
+                    <div class="min-w-0">
+                        <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                            <span class="material-symbols-outlined text-primary-custom" style="font-size: clamp(24px, 5vw, 32px); font-variation-settings: 'FILL' 1;">landscape</span>
+                            <h1 id="roomTitle" class="font-headline-lg text-on-surface mb-0 room-header-title text-truncate">
                                 Trip
                             </h1>
                         </div>
                         <p class="font-label-sm text-secondary-custom mb-0">Kelola peralatan pendakian bersama tim</p>
                     </div>
-                    <button onclick="joinFake()" class="btn btn-active d-flex align-items-center gap-2 px-3 py-2 bg-secondary-container rounded-custom shadow-custom">
-                        <span class="material-symbols-outlined">
-                            group_add
-                        </span>
-                        Tambah Anggota
+                    <button onclick="joinFake()" class="btn btn-active d-flex align-items-center gap-2 px-3 py-2 bg-secondary-container rounded-custom shadow-custom flex-shrink-0">
+                        <span class="material-symbols-outlined" style="font-size: 20px;">group_add</span>
+                        <span class="add-member-label">Tambah Anggota</span>
                     </button>
                 </div>
 
-                <div class="bg-white p-3 rounded-custom">
-                    <table class="table table-borderless mb-0">
-                        <thead>
-                            <tr>
-                                <th class="font-label-sm text-secondary-custom ps-2" style="width: 35%;">Nama Peralatan</th>
-                                <th class="font-label-sm text-secondary-custom ps-2" style="width: 25%;">Harga Sewa/Beli</th>
-                                <th class="font-label-sm text-secondary-custom ps-2" style="width: 20%;">Anggota</th>
-                                <th class="font-label-sm text-secondary-custom ps-2" style="width: 10%;">Qty</th>
-                                <th style="width: 10%;"></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class="align-middle">
-                                    <input id="equipInput" class="form-control bg-surface-container border-surface-variant rounded-3 px-3 py-2 font-label-md fw-medium" placeholder="e.g., Tenda Dome 4P" type="text">
-                                </td>
-                                <td class="align-middle">
-                                    <div class="position-relative">
-                                        <span class="position-absolute font-label-md text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">Rp</span>
-                                        <input id="priceInput" class="form-control bg-surface-container border-surface-variant rounded-3 font-label-md text-on-surface" style="padding-left: 48px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px;" placeholder="0" type="number">
-                                    </div>
-                                </td>
-                                <td class="align-middle">
-                                    <select id="userInput" class="form-select bg-surface-container border-surface-variant rounded-3 px-3 py-2 font-label-md"></select>
-                                </td>
-                                <td class="align-middle">
-                                    <input id="qtyInput" class="form-control bg-surface-container border-surface-variant rounded-3 font-label-md text-on-surface" style="padding: 8px; padding-left: 13px;" placeholder="1" type="number">
-                                </td>
-                                <td class="align-middle text-end">
-                                    <button onclick="addItem()" class="btn btn-active d-flex align-items-center justify-content-center bg-primary-container text-white rounded-3 floating-shadow shadow-custom-2" style="width: 35px; height: 35px;">
-                                        <span class="material-symbols-outlined" style="font-size: 28px; font-variation-settings: 'FILL' 1;">add</span>
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="bg-white p-3 rounded-custom room-table-wrapper">
+                    <div class="table-responsive">
+                        <table class="table table-borderless mb-0" style="min-width: 560px;">
+                            <thead>
+                                <tr>
+                                    <th class="font-label-sm text-secondary-custom ps-2" style="width: 30%;">Nama Peralatan</th>
+                                    <th class="font-label-sm text-secondary-custom ps-2" style="width: 22%;">Harga Sewa/Beli</th>
+                                    <th class="font-label-sm text-secondary-custom ps-2" style="width: 18%;">Anggota</th>
+                                    <th class="font-label-sm text-secondary-custom ps-2" style="width: 10%;">Qty</th>
+                                    <th class="font-label-sm text-secondary-custom ps-2 text-center" style="width: 12%;">Mode</th>
+                                    <th style="width: 8%;"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="align-middle">
+                                        <input id="equipInput" class="form-control bg-surface-container border-surface-variant rounded-3 px-3 py-2 font-label-md fw-medium" placeholder="e.g., Tenda Dome 4P" type="text">
+                                    </td>
+                                    <td class="align-middle">
+                                        <div class="position-relative">
+                                            <span class="position-absolute font-label-md text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">Rp</span>
+                                            <input id="priceInput" class="form-control bg-surface-container border-surface-variant rounded-3 font-label-md text-on-surface" style="padding-left: 40px; padding-right: 8px; padding-top: 8px; padding-bottom: 8px;" placeholder="0" type="number" min="0">
+                                        </div>
+                                    </td>
+                                    <td class="align-middle">
+                                        <select id="userInput" class="form-select bg-surface-container border-surface-variant rounded-3 px-2 py-2 font-label-md"></select>
+                                    </td>
+                                    <td class="align-middle">
+                                        <input id="qtyInput" class="form-control bg-surface-container border-surface-variant rounded-3 font-label-md text-on-surface" style="padding: 8px; padding-left: 10px;" placeholder="1" type="number" min="1">
+                                    </td>
+                                    <td class="align-middle text-center">
+                                        <button id="splitToggleDesktop" type="button" class="split-toggle-btn mx-auto" onclick="toggleSplitDesktop()" title="Mode: Dibagi Rame">
+                                            <span class="split-icon split-icon-group">
+                                                <span class="material-symbols-outlined" style="font-size: 16px; font-variation-settings: 'FILL' 1;">group</span>
+                                            </span>
+                                            <span class="split-icon split-icon-solo">
+                                                <span class="material-symbols-outlined" style="font-size: 16px; font-variation-settings: 'FILL' 1;">person</span>
+                                            </span>
+                                        </button>
+                                        <p id="splitLabelDesktop" class="font-label-sm text-secondary-custom mb-0 mt-1" style="font-size: 10px; line-height: 1.2;">Rame</p>
+                                    </td>
+                                    <td class="align-middle text-end">
+                                        <button onclick="addItem()" class="btn btn-active d-flex align-items-center justify-content-center bg-primary-container text-white rounded-3 floating-shadow shadow-custom-2" style="width: 35px; height: 35px;">
+                                            <span class="material-symbols-outlined" style="font-size: 26px; font-variation-settings: 'FILL' 1;">add</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="room-input-card">
+                    <p class="font-label-sm text-secondary-custom mb-0 fw-semibold text-uppercase" style="letter-spacing: 0.08em;">Tambah Peralatan</p>
+
+                    <input id="equipInputMobile" class="form-control bg-surface-container border-surface-variant rounded-3 px-3 py-2 font-label-md fw-medium" placeholder="Nama peralatan (e.g., Tenda Dome 4P)" type="text">
+
+                    <div class="input-row">
+                        <div class="position-relative flex-grow-1">
+                            <span class="position-absolute font-label-md text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">Rp</span>
+                            <input id="priceInputMobile" class="form-control bg-surface-container border-surface-variant rounded-3 font-label-md" style="padding-left: 40px;" placeholder="Harga" type="number" min="0">
+                        </div>
+                        <input id="qtyInputMobile" class="form-control bg-surface-container border-surface-variant rounded-3 font-label-md text-center" style="width: 70px; flex-shrink: 0;" placeholder="Qty" type="number" min="1">
+                    </div>
+
+                    <div class="input-row">
+                        <select id="userInputMobile" class="form-select bg-surface-container border-surface-variant rounded-3 font-label-md flex-grow-1"></select>
+
+                        <div class="d-flex flex-column align-items-center gap-1 flex-shrink-0">
+                            <button id="splitToggleMobile" type="button" class="split-toggle-btn" onclick="toggleSplitMobile()" title="Mode pembagian">
+                                <span class="split-icon split-icon-group">
+                                    <span class="material-symbols-outlined" style="font-size: 16px; font-variation-settings: 'FILL' 1;">group</span>
+                                </span>
+                                <span class="split-icon split-icon-solo">
+                                    <span class="material-symbols-outlined" style="font-size: 16px; font-variation-settings: 'FILL' 1;">person</span>
+                                </span>
+                            </button>
+                            <span id="splitLabelMobile" class="font-label-sm text-secondary-custom" style="font-size: 10px;">Rame</span>
+                        </div>
+
+                        <button onclick="addItemMobile()" class="btn btn-active d-flex align-items-center justify-content-center bg-primary-container text-white rounded-3 floating-shadow shadow-custom-2 flex-shrink-0" style="width: 42px; height: 42px;">
+                            <span class="material-symbols-outlined" style="font-size: 26px; font-variation-settings: 'FILL' 1;">add</span>
+                        </button>
+                    </div>
                 </div>
 
                 <div class="d-flex flex-column gap-2">
-                    <div class="d-flex justify-content-between align-items-center px-2">
+                    <div class="d-flex justify-content-between align-items-center px-2 flex-wrap gap-2">
                         <h3 class="font-label-md text-on-surface text-uppercase mb-0 d-flex align-items-center gap-2" style="letter-spacing: 0.1em;">
                             <span class="material-symbols-outlined text-primary-custom" style="font-size: 20px;">inventory_2</span>
                             Daftar Peralatan
                         </h3>
-                        <span class="font-label-sm text-secondary-custom">
+                        <span id="itemCountLabel" class="font-label-sm text-secondary-custom">
                             Item akan muncul di sini
                         </span>
                     </div>
@@ -100,33 +146,33 @@
             </div>
         </section>
 
-        <aside class="w-100 bg-surface-container p-3 d-flex flex-column gap-3 border-start border-surface-variant border-opacity-25" style="flex: 1 1 35%;">
+        <aside class="w-100 bg-surface-container p-3 d-flex flex-column gap-3 border-start border-surface-variant border-opacity-25 room-aside" style="flex: 1 1 35%;">
 
             <div class="bg-white p-3 rounded-custom floating-shadow">
                 <div class="mb-3">
                     <label class="font-label-sm text-secondary-custom mb-2 d-block">Pajak PPN (%)</label>
                     <div class="position-relative">
                         <span class="position-absolute font-label-md text-secondary-custom" style="right: 12px; top: 50%; transform: translateY(-50%);">%</span>
-                        <input id="taxInput" class="form-control bg-surface-container border-surface-variant rounded-3 px-3 py-2" type="number" value="0">
+                        <input id="taxInput" class="form-control bg-surface-container border-surface-variant rounded-3 px-3 py-2" type="number" value="0" min="0">
                     </div>
                 </div>
                 <div class="mb-3">
                     <label class="font-label-sm text-secondary-custom mb-2 d-block">Diskon Toko</label>
                     <div class="position-relative">
                         <span class="position-absolute font-label-md text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">Rp</span>
-                        <input id="discountInput" class="form-control bg-surface-container border-surface-variant rounded-3" style="padding-left: 48px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px;" type="number" value="0">
+                        <input id="discountInput" class="form-control bg-surface-container border-surface-variant rounded-3" style="padding-left: 48px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px;" type="number" value="0" min="0">
                     </div>
                 </div>
                 <div class="mb-0">
                     <label class="font-label-sm text-secondary-custom mb-2 d-block">Biaya Tambahan (Transport/Parkir)</label>
                     <div class="position-relative">
                         <span class="position-absolute font-label-md text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%);">Rp</span>
-                        <input id="extraFee" class="form-control bg-surface-container border-surface-variant rounded-3" style="padding-left: 48px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px;" type="number" value="0">
+                        <input id="extraFee" class="form-control bg-surface-container border-surface-variant rounded-3" style="padding-left: 48px; padding-right: 12px; padding-top: 8px; padding-bottom: 8px;" type="number" value="0" min="0">
                     </div>
                 </div>
             </div>
 
-            <div class="mt-auto pt-3">
+            <div class="mt-auto pt-2">
                 <div class="mb-3 bg-white p-3 rounded-custom">
                     <table class="table table-borderless mb-0">
                         <tbody>
@@ -144,15 +190,15 @@
                             </tr>
                             <tr class="border-top border-surface-variant">
                                 <td class="font-body-md fw-bold text-on-primary-container pt-3">Total Keseluruhan</td>
-                                <td id="grandTotal" class="fw-bold text-primary-custom pt-3 text-end" style="font-size: 20px;">Rp 0</td>
+                                <td id="grandTotal" class="fw-bold text-primary-custom pt-3 text-end" style="font-size: clamp(16px, 4vw, 20px);">Rp 0</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
                 <div class="d-flex flex-column gap-2">
-                    <button id="lockRoomBtn" class="btn btn-active w-100 py-3 rounded-custom d-flex align-items-center justify-content-center gap-3 floating-shadow btn-primary-custom shadow-custom-2" style="background-color: var(--color-primary-container); color: white;">
+                    <button id="lockRoomBtn" class="btn btn-active w-100 py-3 rounded-custom d-flex align-items-center justify-content-center gap-2 floating-shadow btn-primary-custom shadow-custom-2" style="background-color: var(--color-primary-container); color: white;">
                         <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">lock</span>
-                        <span class="font-headline-md">Selesai & Kunci Trip</span>
+                        <span class="font-headline-md" style="font-size: clamp(16px, 4vw, 24px);">Selesai & Kunci Trip</span>
                     </button>
                     <p class="text-center font-label-sm text-secondary-custom mb-0">Tidak ada yang bisa edit setelah dikunci.</p>
                 </div>
@@ -164,7 +210,7 @@
         <div class="container-fluid max-w-container mx-auto py-3 px-3">
             <div class="row g-3 align-items-center">
                 <div class="col-12 col-md-6 text-center text-md-start">
-                    <div class=" mb-2">
+                    <div class="mb-2">
                         <img src="logosipuncak.png" alt="logo SiPuncak" style="width: 100px;">
                     </div>
                     <p class="font-label-sm text-on-primary mb-0">© 2026 SiPuncak. All rights reserved.</p>
@@ -174,7 +220,7 @@
                         <a class="font-label-sm text-on-primary text-decoration-none hover-text" href="#">Privacy Policy</a>
                         <a class="font-label-sm text-on-primary text-decoration-none hover-text" href="#">Terms of Service</a>
                         <a class="font-label-sm text-on-primary text-decoration-none hover-text" href="#">Help Center</a>
-                    </div> 
+                    </div>
                 </div>
             </div>
         </div>
@@ -198,36 +244,96 @@
             };
         }
 
+
+        let currentSplitMode = "all";
+
+        function toggleSplitDesktop() {
+            currentSplitMode = currentSplitMode === "all" ? "solo" : "all";
+            updateSplitUI();
+        }
+
+        function toggleSplitMobile() {
+            currentSplitMode = currentSplitMode === "all" ? "solo" : "all";
+            updateSplitUI();
+        }
+
+        function updateSplitUI() {
+            const isAll = currentSplitMode === "all";
+
+            const desktopBtn = document.getElementById("splitToggleDesktop");
+            const desktopLabel = document.getElementById("splitLabelDesktop");
+            if (desktopBtn) {
+                if (isAll) {
+                    desktopBtn.classList.remove("solo-mode");
+                    desktopBtn.title = "Mode: Dibagi Rame ke semua";
+                    desktopLabel.textContent = "Rame";
+                } else {
+                    desktopBtn.classList.add("solo-mode");
+                    desktopBtn.title = "Mode: Biaya Sendiri";
+                    desktopLabel.textContent = "Sendiri";
+                }
+            }
+
+            const mobileBtn = document.getElementById("splitToggleMobile");
+            const mobileLabel = document.getElementById("splitLabelMobile");
+            if (mobileBtn) {
+                if (isAll) {
+                    mobileBtn.classList.remove("solo-mode");
+                    mobileLabel.textContent = "Rame";
+                } else {
+                    mobileBtn.classList.add("solo-mode");
+                    mobileLabel.textContent = "Sendiri";
+                }
+            }
+        }
+
         function rupiah(num) {
             return "Rp " + num.toLocaleString("id-ID");
         }
 
         function renderUsers() {
-            const select = document.getElementById("userInput");
-            select.innerHTML = "";
-
-            roomData.users.forEach((user) => {
-                select.innerHTML += `
-                <option class="font-label-md">${user}</option>
-            `;
+            const selects = ["userInput", "userInputMobile"];
+            selects.forEach(id => {
+                const select = document.getElementById(id);
+                if (!select) return;
+                select.innerHTML = "";
+                roomData.users.forEach((user) => {
+                    select.innerHTML += `<option class="font-label-md">${user}</option>`;
+                });
             });
         }
 
         function addItem() {
             const equip = document.getElementById("equipInput").value.trim();
-            let price = Number(document.getElementById("priceInput").value);
+            const price = Number(document.getElementById("priceInput").value);
             const user = document.getElementById("userInput").value;
             const qty = Number(document.getElementById("qtyInput").value || 1);
-            let totalprice = 0;
+            pushItem(equip, price, user, qty, currentSplitMode);
+            document.getElementById("equipInput").value = "";
+            document.getElementById("priceInput").value = "";
+            document.getElementById("qtyInput").value = "";
+        }
 
+        function addItemMobile() {
+            const equip = document.getElementById("equipInputMobile").value.trim();
+            const price = Number(document.getElementById("priceInputMobile").value);
+            const user = document.getElementById("userInputMobile").value;
+            const qty = Number(document.getElementById("qtyInputMobile").value || 1);
+            pushItem(equip, price, user, qty, currentSplitMode);
+            document.getElementById("equipInputMobile").value = "";
+            document.getElementById("priceInputMobile").value = "";
+            document.getElementById("qtyInputMobile").value = "";
+        }
+
+        function pushItem(equip, price, user, qty, splitMode) {
             if (equip === "" || price <= 0) {
                 alert("Isi nama barang dan harga terlebih dahulu.");
                 return;
             }
 
-            const isDuplicate = roomData.items.some(item => 
-                item.equip.toLowerCase() === equip.toLowerCase() && 
-                item.user === user && 
+            const isDuplicate = roomData.items.some(item =>
+                item.equip.toLowerCase() === equip.toLowerCase() &&
+                item.user === user &&
                 item.price === price
             );
 
@@ -236,61 +342,72 @@
                 return;
             }
 
-            totalprice = price * qty;
+            const totalprice = price * qty;
 
             roomData.items.push({
-                equip,   
+                equip,
                 price,
                 totalprice,
                 user,
-                qty
+                qty,
+                splitMode 
             });
-
-            
 
             renderItems();
             updateTotal();
-
-            document.getElementById("equipInput").value = "";
-            document.getElementById("priceInput").value = "";
-            document.getElementById("qtyInput").value = "";
         }
 
         function renderItems() {
             const list = document.getElementById("itemList");
             list.innerHTML = "";
 
-            if (roomData.items.length > 0) {
-                roomData.items.forEach((item, index) => {
-                    list.innerHTML += `
-                    <div class="bg-white p-3 rounded-custom card-shadow border border-surface-variant border-opacity-25 d-flex justify-content-between align-items-center">
-                        <div>
-                            <span class="bg-primary-fixed px-2 py-1 fw-medium rounded medium">${item.user}</span>
-                            <div class="d-flex gap-2 mt-1">
-                                <p class="fw-semibold mb-1">${item.equip} - ${item.qty} × </p>
-                                
-                                <span class="text-primary-custom fw-semibold">${rupiah(item.price)}</span>
-                            </div>
-                            <div class="ms-auto">
-                                <span class="text-primary-custom fw-semibold">${rupiah(item.totalprice)}</span>
-                            </div>
-                        </div>
-                        <button onclick="deleteItem(${index})" class="btn btn-sm text-danger p-2 outline-danger rounded-circle" style="min-width: 40px;">
-                            <span class="material-symbols-outlined" style="font-size: 20px;">delete</span>
-                        </button>
-                    </div>
-                `;
-                });
+            const countLabel = document.getElementById("itemCountLabel");
+            if (roomData.items.length === 0) {
+                countLabel.textContent = "Item akan muncul di sini";
+                return;
+            }
+            countLabel.textContent = `${roomData.items.length} item`;
+
+            roomData.items.forEach((item, index) => {
+                const isAll = !item.splitMode || item.splitMode === "all";
+                const splitBadge = isAll
+                    ? `<span class="badge-rame">
+                            <span class="material-symbols-outlined" style="font-size: 11px; font-variation-settings: 'FILL' 1;">group</span>
+                            Rame
+                        </span>`
+                    : `<span class="badge-sendiri">
+                            <span class="material-symbols-outlined" style="font-size: 11px; font-variation-settings: 'FILL' 1;">person</span>
+                            Sendiri
+                        </span>`;
 
                 list.innerHTML += `
-                    <div class="d-flex justify-content-center mt-3">
-                        <button onclick="deleteAllItems()" class="btn outline-danger px-4 py-2 rounded-custom d-flex align-items-center gap-2">
-                            <span class="material-symbols-outlined" style="font-size: 20px;">delete_sweep</span>
-                            Hapus Semua
+                    <div class="bg-white p-3 rounded-custom card-shadow border border-surface-variant border-opacity-25 d-flex justify-content-between align-items-start item-slide-in item-card-mobile" style="gap: 8px;">
+                        <div class="flex-grow-1 min-w-0">
+                            <div class="d-flex align-items-center gap-2 flex-wrap mb-1">
+                                <span class="bg-primary-fixed px-2 py-1 fw-medium rounded" style="font-size: 12px;">${item.user}</span>
+                                ${splitBadge}
+                            </div>
+                            <div class="d-flex align-items-center gap-1 flex-wrap mt-1">
+                                <p class="fw-semibold mb-0" style="font-size: clamp(13px, 3vw, 15px);">${item.equip} &mdash; ${item.qty} &times;</p>
+                                <span class="text-secondary-custom fw-medium" style="font-size: clamp(12px, 2.5vw, 14px);">${rupiah(item.price)}</span>
+                            </div>
+                            <span class="text-primary-custom fw-semibold" style="font-size: clamp(13px, 3vw, 15px);">${rupiah(item.totalprice)}</span>
+                        </div>
+                        <button onclick="deleteItem(${index})" class="btn btn-sm text-danger p-2 outline-danger rounded-circle item-delete-btn" style="min-width: 36px; min-height: 36px; flex-shrink: 0;">
+                            <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
                         </button>
                     </div>
                 `;
-            }
+            });
+
+            list.innerHTML += `
+                <div class="d-flex justify-content-center mt-2">
+                    <button onclick="deleteAllItems()" class="btn outline-danger px-4 py-2 rounded-custom d-flex align-items-center gap-2 font-label-md">
+                        <span class="material-symbols-outlined" style="font-size: 18px;">delete_sweep</span>
+                        Hapus Semua
+                    </button>
+                </div>
+            `;
         }
 
         function updateTotal() {
@@ -316,6 +433,7 @@
         document.getElementById("discountInput").addEventListener("input", updateTotal);
         document.getElementById("extraFee").addEventListener("input", updateTotal);
 
+
         function lockRoom() {
             if (roomData.items.length === 0) {
                 alert("Tidak dapat mengunci trip!\n\nMinimal harus ada 1 barang dalam daftar peralatan.");
@@ -330,12 +448,6 @@
             localStorage.setItem("roomData", JSON.stringify(roomData));
             window.location.href = "nota.html";
         }
-
-        document.getElementById("roomTitle").innerText = `Trip ${roomData.roomName}`;
-
-        renderUsers();
-
-        document.getElementById("lockRoomBtn").addEventListener("click", lockRoom);
 
         function deleteItem(index) {
             if (confirm("Hapus item ini dari daftar?")) {
@@ -358,7 +470,6 @@
             if (!nama) return;
 
             const isDuplicate = roomData.users.some(user => user.toLowerCase() === nama.toLowerCase());
-            
             if (isDuplicate) {
                 alert("Nama anggota sudah ada di list!\nGunakan nama yang berbeda.");
                 return;
@@ -366,10 +477,31 @@
 
             roomData.users.push(nama);
             localStorage.setItem("roomData", JSON.stringify(roomData));
-            alert("Anggota baru berhasil ditambahkan!")
-
+            alert("Anggota baru berhasil ditambahkan!");
             renderUsers();
         }
+
+        document.getElementById("roomTitle").innerText = `Trip ${roomData.roomName}`;
+        renderUsers();
+        document.getElementById("lockRoomBtn").addEventListener("click", lockRoom);
+
+        document.getElementById("userInput").addEventListener("change", function() {
+            const mob = document.getElementById("userInputMobile");
+            if (mob) mob.value = this.value;
+        });
+        document.getElementById("userInputMobile").addEventListener("change", function() {
+            const desk = document.getElementById("userInput");
+            if (desk) desk.value = this.value;
+        });
+
+        ["equipInput", "priceInput", "qtyInput"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener("keydown", e => { if (e.key === "Enter") addItem(); });
+        });
+        ["equipInputMobile", "priceInputMobile", "qtyInputMobile"].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.addEventListener("keydown", e => { if (e.key === "Enter") addItemMobile(); });
+        });
     </script>
 </body>
 
