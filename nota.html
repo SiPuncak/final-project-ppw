@@ -390,16 +390,16 @@
       const grandTotal = subtotal + tax + fee - discount;
       const totalMembers = roomData.users.length;
 
-      let text = ` *${roomData.roomName}*\n\n`;
+      let text = ` *Gunung: ${roomData.roomName}*\n\n`;
       text += ` *RINCIAN PATUNGAN PERALATAN*\n`;
-      text += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
+      text += `━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━\n\n`;
 
       Object.keys(bills).forEach(user => {
         const b = bills[user];
         text += ` *${user}*\n`;
 
         if (b.sharedItems.length > 0) {
-          text += `   _Dibagi Rame (${totalMembers} orang)_\n`;
+          text += `   \n_Dibagi Rame (${totalMembers} orang)_\n`;
           b.sharedItems.forEach(item => {
             text += `  - ${item.equip} (${item.qty}x @ ${rupiah(item.price)}) = ${rupiah(item.totalprice)}\n`;
           });
@@ -407,20 +407,20 @@
         }
 
         if (b.soloItems.length > 0) {
-          text += `   _Biaya Sendiri_\n`;
+          text += `   \n_Biaya Sendiri_\n`;
           b.soloItems.forEach(item => {
             text += `  - ${item.equip} (${item.qty}x @ ${rupiah(item.price)}) = ${rupiah(item.totalprice)}\n`;
           });
         }
 
         if (b.extraPerMember !== 0) {
-          text += `   Pajak + Biaya: ${rupiah(b.extraPerMember)}\n`;
+          text += `   \nPajak + Biaya - Diskon: ${rupiah(b.extraPerMember)}\n`;
         }
 
         text += `  *TOTAL: ${rupiah(b.total)}*\n\n`;
+        text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
       });
 
-      text += `━━━━━━━━━━━━━━━━━━━━━━\n`;
       text += `Subtotal  : ${rupiah(subtotal)}\n`;
       text += `Pajak     : ${rupiah(tax)}\n`;
       text += `Diskon    : -${rupiah(discount)}\n`;
