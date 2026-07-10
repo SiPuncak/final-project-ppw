@@ -390,16 +390,16 @@
       const grandTotal = subtotal + tax + fee - discount;
       const totalMembers = roomData.users.length;
 
-      let text = `🏔️ *${roomData.roomName}*\n\n`;
-      text += `📋 *RINCIAN PATUNGAN PERALATAN*\n`;
+      let text = ` *${roomData.roomName}*\n\n`;
+      text += ` *RINCIAN PATUNGAN PERALATAN*\n`;
       text += `━━━━━━━━━━━━━━━━━━━━━━\n\n`;
 
       Object.keys(bills).forEach(user => {
         const b = bills[user];
-        text += `👤 *${user}*\n`;
+        text += ` *${user}*\n`;
 
         if (b.sharedItems.length > 0) {
-          text += `  🤝 _Dibagi Rame (${totalMembers} orang)_\n`;
+          text += `   _Dibagi Rame (${totalMembers} orang)_\n`;
           b.sharedItems.forEach(item => {
             text += `  - ${item.equip} (${item.qty}x @ ${rupiah(item.price)}) = ${rupiah(item.totalprice)}\n`;
           });
@@ -407,14 +407,14 @@
         }
 
         if (b.soloItems.length > 0) {
-          text += `  👤 _Biaya Sendiri_\n`;
+          text += `   _Biaya Sendiri_\n`;
           b.soloItems.forEach(item => {
             text += `  - ${item.equip} (${item.qty}x @ ${rupiah(item.price)}) = ${rupiah(item.totalprice)}\n`;
           });
         }
 
         if (b.extraPerMember !== 0) {
-          text += `  💸 Pajak + Biaya: ${rupiah(b.extraPerMember)}\n`;
+          text += `   Pajak + Biaya: ${rupiah(b.extraPerMember)}\n`;
         }
 
         text += `  *TOTAL: ${rupiah(b.total)}*\n\n`;
@@ -426,10 +426,10 @@
       text += `Diskon    : -${rupiah(discount)}\n`;
       text += `Biaya     : ${rupiah(fee)}\n\n`;
       text += `*TOTAL KESELURUHAN*\n${rupiah(grandTotal)}\n\n`;
-      text += `💳 Transfer ke:\n`;
+      text += ` Transfer ke:\n`;
       text += `${roomData.bankname || 'Bank/E-Wallet'} - ${roomData.rekening}\n\n`;
       text += `*Total ${totalMembers} anggota*\n\n`;
-      text += `Selamat mendaki! 🏔️⛺`;
+      text += `Selamat mendaki!!! `;
 
       window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
     }
