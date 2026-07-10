@@ -17,7 +17,7 @@
         <div class="container-fluid max-w-container mx-auto py-2 px-3" style="height: 64px;">
             <div class="d-flex justify-content-between align-items-center h-100">
                 <div class="mt-2 mb-2">
-                    <img src="logosipuncak.png" alt="logo SiPuncak" style="width: 150px;">
+                    <img src="logosipuncak.png" alt="logo SiPuncak" style="width: clamp(110px, 20vw, 150px);">
                 </div>
                 <nav class="d-flex align-items-center gap-3">
                     <a class="font-label-lg text-on-primary hover-color text-decoration-none d-flex align-items-center gap-1 hover-text" href="index.html">
@@ -29,11 +29,11 @@
         </div>
     </header>
 
-    <main class="flex-grow-1 container-fluid max-w-container mx-auto px-4" style="padding-top: 96px; padding-bottom: 24px;">
+    <main class="flex-grow-1 container-fluid max-w-container mx-auto px-3 px-md-4" style="padding-top: 96px; padding-bottom: 24px;">
 
-        <div class="mb-3 px-3">
+        <div class="mb-3 px-2 px-md-3">
             <div class="d-flex align-items-center gap-2 mb-2">
-                <span class="material-symbols-outlined text-primary-custom" style="font-size: 36px; font-variation-settings: 'FILL' 1;">history</span>
+                <span class="material-symbols-outlined text-primary-custom" style="font-size: clamp(24px, 6vw, 36px); font-variation-settings: 'FILL' 1;">history</span>
                 <h1 class="font-headline-lg text-on-surface mb-0">Riwayat Trip</h1>
             </div>
             <p class="font-body-md text-secondary-custom mt-2">Lihat kembali riwayat patungan peralatan pendakian kamu</p>
@@ -152,34 +152,34 @@
 
             pageData.forEach((item) => {
                 container.innerHTML += `
-                    <div class="bg-white rounded-custom p-3 shadow-sm mb-3 hover-lift d-flex align-items-center gap-3">
-                        <div onclick="openHistory(${item.id})" class="flex-grow-1 cursor-pointer">
-                            <div class="d-flex justify-content-between align-items-start">
-                                <div>
-                                    <div class="d-flex align-items-center gap-2 mb-2">
-                                        <span class="material-symbols-outlined text-primary-custom" style="font-size: 24px; font-variation-settings: 'FILL' 1;">landscape</span>
-                                        <h3 class="fw-bold text-on-surface mb-0">${item.roomName}</h3>
+                    <div class="bg-white rounded-custom p-3 shadow-sm mb-3 hover-lift">
+                        <div class="d-flex align-items-start gap-3 history-card-row">
+                            <div onclick="openHistory(${item.id})" class="flex-grow-1 cursor-pointer min-w-0">
+                                <div class="d-flex align-items-center gap-2 mb-1 flex-wrap">
+                                    <span class="material-symbols-outlined text-primary-custom" style="font-size: clamp(18px, 4vw, 24px); font-variation-settings: 'FILL' 1;">landscape</span>
+                                    <h3 class="fw-bold text-on-surface mb-0" style="font-size: clamp(14px, 4vw, 18px);">${item.roomName}</h3>
+                                </div>
+                                <p class="small text-secondary-custom mt-1 mb-0 d-flex align-items-center gap-1">
+                                    <span class="material-symbols-outlined" style="font-size: 14px;">event</span>
+                                    ${item.date}
+                                </p>
+                                <div class="mt-2 d-flex justify-content-between align-items-center pt-2 border-top border-opacity-25 flex-wrap gap-2">
+                                    <span class="small fw-medium text-secondary-custom d-flex align-items-center gap-1">
+                                        <span class="material-symbols-outlined" style="font-size: 16px;">groups</span>
+                                        ${item.users ? item.users.length : 1} Anggota
+                                    </span>
+                                    <div class="text-end">
+                                        <span class="text-primary-custom fw-bold" style="font-size: clamp(14px, 4vw, 16px);">${rupiah(item.total)}</span>
+                                        <p class="font-label-sm text-secondary-custom mb-0">Klik untuk lihat rincian</p>
                                     </div>
-                                    <p class="small text-secondary-custom mt-1 mb-0 d-flex align-items-center gap-1">
-                                        <span class="material-symbols-outlined" style="font-size: 16px;">event</span>
-                                        ${item.date}
-                                    </p>
                                 </div>
                             </div>
-                            <div class="mt-3 d-flex justify-content-between align-items-center pt-2 border-top border-opacity-25">
-                                <span class="small fw-medium text-secondary-custom d-flex align-items-center gap-1">
-                                    <span class="material-symbols-outlined" style="font-size: 18px;">groups</span>
-                                    ${item.users ? item.users.length : 1} Anggota
-                                </span>
-                                <div class="text-end">
-                                    <span class="text-primary-custom fw-bold">${rupiah(item.total)}</span>
-                                    <p class="font-label-sm text-secondary-custom mb-0">Klik untuk lihat rincian</p>
-                                </div>
+                            <div class="history-card-actions flex-shrink-0">
+                                <button onclick="deleteHistory(${item.id})" class="btn btn-sm text-danger p-2 outline-danger rounded-circle" style="min-width: 36px; min-height: 36px;">
+                                    <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
+                                </button>
                             </div>
                         </div>
-                        <button onclick="deleteHistory(${item.id})" class="btn btn-sm text-danger p-2 outline-danger rounded-circle" style="min-width: 40px;">
-                            <span class="material-symbols-outlined" style="font-size: 20px;">delete</span>
-                        </button>
                     </div>
                 `;
             });
