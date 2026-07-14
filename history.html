@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <script src="custom-alert.js"></script>
+    <script src="auth.js"></script>
+    <script>requireAuth();</script>
 </head>
 
 <body class="d-flex flex-column min-vh- mountain-pattern">
@@ -195,7 +198,7 @@
             const selected = history.find(item => item.id === id);
 
             if (!selected) {
-                alert("Nota tidak ditemukan");
+                CustomAlert.show({ message: "Nota tidak ditemukan", icon: "error" });
                 return;
             }
 
@@ -257,8 +260,8 @@
             }
         };
 
-        function deleteHistory(id) {
-            if (confirm("Hapus riwayat ini?")) {
+        async function deleteHistory(id) {
+            if (await CustomAlert.show({ message: "Hapus riwayat ini?", icon: "warning", showCancel: true, confirmText: "Hapus" })) {
                 let history = JSON.parse(localStorage.getItem("historyData")) || [];
                 history = history.filter(item => item.id !== id);
                 localStorage.setItem("historyData", JSON.stringify(history));
@@ -267,8 +270,8 @@
             }
         }
 
-        function deleteAllHistory() {
-            if (confirm("Hapus semua riwayat? Tindakan ini tidak dapat dibatalkan.")) {
+        async function deleteAllHistory() {
+            if (await CustomAlert.show({ message: "Hapus semua riwayat? Tindakan ini tidak dapat dibatalkan.", icon: "warning", showCancel: true, confirmText: "Hapus Semua" })) {
                 localStorage.setItem("historyData", JSON.stringify([]));
                 location.reload();
             }
