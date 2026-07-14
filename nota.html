@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
   <link href="style.css" rel="stylesheet">
+  <script src="auth.js"></script>
+  <script>requireAuth();</script>
+    <script src="custom-alert.js"></script>
 </head>
 
 <body class="bg-surface mountain-pattern">
@@ -169,8 +172,9 @@
           copyIcon.textContent = 'content_copy';
           copyIcon.classList.remove('text-success');
         }, 1500);
-      }).catch(() => {
-        alert('Gagal menyalin ke clipboard');
+      }).catch(err => {
+        console.error('Failed to copy: ', err);
+        CustomAlert.show({ message: 'Gagal menyalin ke clipboard', icon: "error" });
       });
     }
   </script>

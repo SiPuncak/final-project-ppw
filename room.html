@@ -9,6 +9,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <script src="auth.js"></script>
+    <script>requireAuth();</script>
+    <script src="custom-alert.js"></script>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -327,7 +330,7 @@
 
         function pushItem(equip, price, user, qty, splitMode) {
             if (equip === "" || price <= 0) {
-                alert("Isi nama barang dan harga terlebih dahulu.");
+                CustomAlert.show({ message: "Isi nama barang dan harga terlebih dahulu.", icon: "warning" });
                 return;
             }
 
@@ -338,7 +341,7 @@
             );
 
             if (isDuplicate) {
-                alert(`Item "${equip}" untuk ${user} dengan harga ${rupiah(price)} sudah ada di list!\n\nGunakan nama berbeda atau edit qty item yang sudah ada.`);
+                CustomAlert.show({ message: `Item "${equip}" untuk ${user} dengan harga ${rupiah(price)} sudah ada di list!\n\nGunakan nama berbeda atau edit qty item yang sudah ada.`, icon: "error" });
                 return;
             }
 
@@ -436,12 +439,12 @@
 
         function lockRoom() {
             if (roomData.items.length === 0) {
-                alert("Tidak dapat mengunci trip!\n\nMinimal harus ada 1 barang dalam daftar peralatan.");
+                CustomAlert.show({ message: "Tidak dapat mengunci trip!\n\nMinimal harus ada 1 barang dalam daftar peralatan.", icon: "error" });
                 return;
             }
 
             if (roomData.users.length < 2) {
-                alert("Tidak dapat mengunci trip!\n\nMinimal harus ada 2 anggota dalam trip ini.\nSilakan tambah anggota terlebih dahulu.");
+                CustomAlert.show({ message: "Tidak dapat mengunci trip!\n\nMinimal harus ada 2 anggota dalam trip ini.\nSilakan tambah anggota terlebih dahulu.", icon: "error" });
                 return;
             }
 
@@ -449,35 +452,43 @@
             window.location.href = "nota.html";
         }
 
-        function deleteItem(index) {
-            if (confirm("Hapus item ini dari daftar?")) {
+        async function deleteItem(index) {
+            if (await CustomAlert.show({ message: "Hapus item ini dari daftar?", icon: "warning", showCancel: true, confirmText: "Hapus" })) {
                 roomData.items.splice(index, 1);
                 renderItems();
                 updateTotal();
             }
         }
 
-        function deleteAllItems() {
-            if (confirm("Hapus semua item dari daftar peralatan?")) {
+        async function deleteAllItems() {
+            if (await CustomAlert.show({ message: "Hapus semua item dari daftar peralatan?", icon: "warning", showCancel: true, confirmText: "Hapus Semua" })) {
                 roomData.items = [];
                 renderItems();
                 updateTotal();
             }
         }
 
-        function joinFake() {
-            const nama = prompt("Nama anggota:");
-            if (!nama) return;
+        async function joinFake() {
+            const nama = await CustomAlert.show({
+                message: "Masukkan nama anggota baru:",
+                icon: "person_add",
+                iconColor: "#556b4e",
+                showInput: true,
+                inputPlaceholder: "Contoh: Budi",
+                showCancel: true,
+                confirmText: "Tambah"
+            });
+            if (!nama || nama.trim() === "") return;
 
             const isDuplicate = roomData.users.some(user => user.toLowerCase() === nama.toLowerCase());
             if (isDuplicate) {
-                alert("Nama anggota sudah ada di list!\nGunakan nama yang berbeda.");
+                CustomAlert.show({ message: "Nama anggota sudah ada di list!\nGunakan nama yang berbeda.", icon: "error" });
                 return;
             }
 
             roomData.users.push(nama);
             localStorage.setItem("roomData", JSON.stringify(roomData));
-            alert("Anggota baru berhasil ditambahkan!");
+            CustomAlert.show({ message: "Anggota baru berhasil ditambahkan!", icon: "check_circle" });
             renderUsers();
         }
 

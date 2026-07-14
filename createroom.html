@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
+    <script src="custom-alert.js"></script>
+    <script src="auth.js"></script>
+    <script>requireAuth();</script>
 </head>
 
 <body class="bg-surface text-on-surface d-flex flex-column min-vh-100">
@@ -172,7 +175,7 @@
             const rekening = document.getElementById("rekening").value.trim();
 
             if (host === "" || restaurant === "" || bankname === "" || rekening === "") {
-                alert("Semua data wajib diisi");
+                CustomAlert.show({ message: "Semua data wajib diisi", icon: "warning" });
                 return;
             }
 
