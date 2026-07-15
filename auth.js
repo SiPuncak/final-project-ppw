@@ -1,10 +1,7 @@
-// auth.js
-// Script for handling mock authentication via localStorage
 
 const USERS_KEY = 'sipuncak_users';
 const CURRENT_USER_KEY = 'sipuncak_current_user';
 
-// Initialize mock database if it doesn't exist
 if (!localStorage.getItem(USERS_KEY)) {
     localStorage.setItem(USERS_KEY, JSON.stringify([]));
 }
@@ -12,7 +9,6 @@ if (!localStorage.getItem(USERS_KEY)) {
 function registerUser(name, email, password) {
     const users = JSON.parse(localStorage.getItem(USERS_KEY));
     
-    // Check if user already exists
     if (users.find(u => u.email === email)) {
         return { success: false, message: 'Email sudah terdaftar.' };
     }
@@ -27,7 +23,6 @@ function loginUser(email, password) {
     const user = users.find(u => u.email === email && u.password === password);
     
     if (user) {
-        // Save current logged in user (without password)
         localStorage.setItem(CURRENT_USER_KEY, JSON.stringify({ name: user.name, email: user.email }));
         return { success: true };
     } else {

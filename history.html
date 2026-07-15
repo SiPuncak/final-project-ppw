@@ -17,17 +17,39 @@
 <body class="d-flex flex-column min-vh- mountain-pattern">
 
     <header class="bg-primary-container fixed-top p-2 px-3 shadow-sm">
-        <div class="container-fluid max-w-container mx-auto py-2 px-3" style="height: 64px;">
+        <div class="container-fluid max-w-container mx-auto py-2 px-3" style="height: 40px;">
             <div class="d-flex justify-content-between align-items-center h-100">
-                <div class="mt-2 mb-2">
-                    <img src="logosipuncak.png" alt="logo SiPuncak" style="width: clamp(110px, 20vw, 150px);">
+                <div class="mt-1 mb-1">
+                    <img src="logosipuncak.png" alt="logo SiPuncak" style="width: 150px;">
                 </div>
-                <nav class="d-flex align-items-center gap-3">
-                    <a class="font-label-lg text-on-primary hover-color text-decoration-none d-flex align-items-center gap-1 hover-text" href="index.html">
-                        <span class="material-symbols-outlined" style="font-size: 28px;">home</span>
+                <nav class="desktop-nav d-flex align-items-center gap-5">
+                    <a class="font-label-lg text-on-primary text-decoration-none d-flex align-items-center gap-1" href="index.html">
                         <span>Beranda</span>
                     </a>
+                    <a href="history.html" class="active font-label-lg text-on-primary text-decoration-none d-flex align-items-center">
+                        <span>Riwayat</span>
+                    </a>
+                    <a href="#" onclick="logoutUser()" class="font-label-lg text-on-primary text-decoration-none d-flex align-items-center">
+                        <span>Keluar</span>
+                    </a>
                 </nav>
+                <div class="mobile-nav d-none">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end bg-primary-container border-0 shadow-lg mt-2">
+                        <li><a class="dropdown-item text-on-primary font-label-md py-2" href="index.html">
+                            <span class="material-symbols-outlined me-2" style="font-size: 20px; vertical-align: middle;">home</span>Beranda
+                        </a></li>
+                        <li><a class="dropdown-item text-on-primary font-label-md py-2 active" href="history.html">
+                            <span class="material-symbols-outlined me-2" style="font-size: 20px; vertical-align: middle;">history</span>Riwayat
+                        </a></li>
+                        <li><hr class="dropdown-divider border-on-primary opacity-25"></li>
+                        <li><a class="dropdown-item text-on-primary font-label-md py-2" href="#" onclick="logoutUser()">
+                            <span class="material-symbols-outlined me-2" style="font-size: 20px; vertical-align: middle;">logout</span>Keluar
+                        </a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </header>
@@ -127,7 +149,10 @@
             if (!dateStr) return new Date();
             const parts = dateStr.split('/');
             if (parts.length === 3) {
-                return new Date(parts[2], parts[1] - 1, parts[0]);
+                const day = parseInt(parts[0], 10);
+                const month = parseInt(parts[1], 10) - 1;
+                const year = parseInt(parts[2], 10);
+                return new Date(year, month, day);
             }
             return new Date(dateStr);
         }
@@ -211,7 +236,7 @@
             const keyword = searchInput ? searchInput.value.toLowerCase().trim() : "";
 
             const now = new Date();
-            now.setHours(23, 59, 59, 999);
+            now.setHours(0, 0, 0, 0);
 
             const filtered = history.filter((item) => {
                 const matchKeyword = item.roomName.toLowerCase().includes(keyword);
@@ -219,10 +244,12 @@
                 if (days === 0) return matchKeyword;
 
                 const itemDate = parseIndonesianDate(item.date);
-                const diffTime = Math.abs(now - itemDate);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                itemDate.setHours(0, 0, 0, 0);
+                
+                const diffTime = now.getTime() - itemDate.getTime();
+                const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-                return matchKeyword && (diffDays <= days);
+                return matchKeyword && (diffDays >= 0 && diffDays <= days);
             });
 
             currentPage = 1;

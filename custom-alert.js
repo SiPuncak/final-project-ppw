@@ -144,7 +144,7 @@ const CustomAlert = {
             let showCancel = false;
             let showInput = false;
             let inputPlaceholder = '';
-            let iconColor = '#f59e0b'; // orange warning color
+            let iconColor = '#f59e0b'; 
 
             if (typeof options === 'string') {
                 title = options;
@@ -157,7 +157,6 @@ const CustomAlert = {
                 inputPlaceholder = options.inputPlaceholder || '';
                 if (options.iconColor) iconColor = options.iconColor;
                 
-                // Adjust default colors based on icon type if not explicitly provided
                 if (!options.iconColor) {
                     if (icon === 'check_circle') iconColor = '#10b981'; // green
                     if (icon === 'error') iconColor = '#ef4444'; // red

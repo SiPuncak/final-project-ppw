@@ -17,10 +17,10 @@
 <body class="d-flex flex-column min-vh-100">
 
     <header class="bg-primary-container sticky-top p-2 px-3 shadow-sm">
-        <div class="container-fluid max-w-container mx-auto py-2 px-3">
+        <div class="container-fluid max-w-container mx-auto py-2 px-3" style="height: 40px;">
             <div class="d-flex justify-content-between align-items-center">
-                <div class="mt-2 mb-2">
-                    <img src="logosipuncak.png" alt="logo SiPuncak" style="width: clamp(110px, 20vw, 150px);">
+                <div class="mt-1 mb-1">
+                    <img src="logosipuncak.png" alt="logo SiPuncak" style="width: 150px;">
                 </div>
             </div>
         </div>
@@ -396,7 +396,7 @@
                             </div>
                             <span class="text-primary-custom fw-semibold" style="font-size: clamp(13px, 3vw, 15px);">${rupiah(item.totalprice)}</span>
                         </div>
-                        <button onclick="deleteItem(${index})" class="btn btn-sm text-danger p-2 outline-danger rounded-circle item-delete-btn" style="min-width: 36px; min-height: 36px; flex-shrink: 0;">
+                        <button onclick="deleteItem(${index})" class="btn btn-sm text-danger p-2 outline-danger rounded-circle item-delete-btn" style="min-width: 39px; min-height: 36px; flex-shrink: 0;">
                             <span class="material-symbols-outlined" style="font-size: 18px;">delete</span>
                         </button>
                     </div>
@@ -478,15 +478,26 @@
                 showCancel: true,
                 confirmText: "Tambah"
             });
-            if (!nama || nama.trim() === "") return;
+            
+            if (nama === false || nama === null) {
+                return;
+            }
+            
+            if (!nama || nama.trim() === "") {
+                CustomAlert.show({ 
+                    message: "Nama anggota tidak boleh kosong!\n\nSilakan isi nama anggota terlebih dahulu.", 
+                    icon: "error" 
+                });
+                return;
+            }
 
-            const isDuplicate = roomData.users.some(user => user.toLowerCase() === nama.toLowerCase());
+            const isDuplicate = roomData.users.some(user => user.toLowerCase() === nama.trim().toLowerCase());
             if (isDuplicate) {
                 CustomAlert.show({ message: "Nama anggota sudah ada di list!\nGunakan nama yang berbeda.", icon: "error" });
                 return;
             }
 
-            roomData.users.push(nama);
+            roomData.users.push(nama.trim());
             localStorage.setItem("roomData", JSON.stringify(roomData));
             CustomAlert.show({ message: "Anggota baru berhasil ditambahkan!", icon: "check_circle" });
             renderUsers();
