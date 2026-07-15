@@ -713,7 +713,7 @@ nav a.active::after {
 
     img, iframe {
         max-width: 100% !important;
-        height: auto !important;
+        height: 100% !important;
     }
 }
 
