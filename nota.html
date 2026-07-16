@@ -141,8 +141,8 @@
   </main>
 
   <footer class="bg-primary-container border-top border-surface-variant px-3">
-    <div class="container-fluid max-w-container mx-auto py-3 px-3">
-      <div class="row g-3 align-items-center">
+    <div class="container-fluid max-w-container mx-auto py-2 px-3">
+      <div class="row g-2 align-items-center">
         <div class="col-12 col-md-6 text-center text-md-start">
           <div class="mb-2">
             <img src="logosipuncak.png" alt="logo SiPuncak" style="width: 100px;">
@@ -310,7 +310,7 @@
 
         const extraNote = b.extraPerMember !== 0
           ? `<li class="d-flex justify-content-between small text-secondary-custom mb-1">
-               <span>Pajak + Biaya tambahan (1/${roomData.users.length})</span>
+               <span>Pajak + Tambahan - Diskon (1/${roomData.users.length})</span>
                <span>${rupiah(b.extraPerMember)}</span>
              </li>`
           : "";
@@ -395,7 +395,7 @@
       const grandTotal = subtotal + tax + fee - discount;
       const totalMembers = roomData.users.length;
 
-      let text = ` *Gunung: ${roomData.roomName}*\n\n`;
+      let text = ` *Destinasi/Trip : ${roomData.roomName}*\n\n`;
       text += ` *RINCIAN PATUNGAN PERALATAN*\n`;
       text += `━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━ ━\n\n`;
 
@@ -434,7 +434,7 @@
       text += ` Transfer ke:\n`;
       text += `${roomData.bankname || 'Bank/E-Wallet'} - ${roomData.rekening}\n\n`;
       text += `*Total ${totalMembers} anggota*\n\n`;
-      text += `Selamat mendaki!!! `;
+      text += `Happy Trip!! `;
 
       window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, "_blank");
     }

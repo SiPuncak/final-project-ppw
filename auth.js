@@ -32,7 +32,7 @@ function loginUser(email, password) {
 
 function logoutUser() {
     localStorage.removeItem(CURRENT_USER_KEY);
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 }
 
 function isUserLoggedIn() {

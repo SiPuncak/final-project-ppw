@@ -39,7 +39,12 @@
                         <label for="password" class="form-label font-label-md fw-semibold">Password</label>
                         <a href="forgot-password.html" class="font-label-sm text-primary-custom text-decoration-none">Lupa password?</a>
                     </div>
-                    <input type="password" class="form-control rounded-custom py-2" id="password" placeholder="Masukkan password" required>
+                    <div class="position-relative">
+                        <input type="password" class="form-control rounded-custom py-2 pe-5" id="password" placeholder="Masukkan password" required>
+                        <button type="button" class="btn position-absolute end-0 top-50 translate-middle-y" onclick="togglePassword('password', 'togglePasswordIcon')" style="border: none; background: transparent;">
+                            <span class="material-symbols-outlined text-secondary-custom" id="togglePasswordIcon" style="font-size: 20px;">visibility_off</span>
+                        </button>
+                    </div>
                 </div>
                 
                 <button type="submit" class="btn btn-primary-custom w-100 py-3 font-label-md rounded-custom shadow-custom-md mb-3">
@@ -57,6 +62,19 @@
     <script>
         if (isUserLoggedIn()) {
             window.location.href = 'index.html';
+        }
+
+        function togglePassword(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
         }
 
         document.getElementById('loginForm').addEventListener('submit', function(e) {
