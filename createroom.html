@@ -57,13 +57,13 @@
                     </div>
 
                     <div class="mb-3">
-                        <label class="font-label-md text-secondary-custom d-block mb-2" for="restaurant">
+                        <label class="font-label-md text-secondary-custom d-block mb-2" for="trip">
                             <span class="material-symbols-outlined align-middle me-1" style="font-size: 18px;">landscape</span>
-                            Nama Gunung / Tujuan
+                            Nama Trip / Tujuan
                         </label>
                         <div class="position-relative">
                             <span class="material-symbols-outlined position-absolute text-secondary-custom" style="left: 12px; top: 50%; transform: translateY(-50%); font-variation-settings: 'FILL' 1;">terrain</span>
-                            <input class="form-control ps-5 py-3 bg-surface border-surface-variant rounded-3 font-body-md" id="restaurant" placeholder="e.g., Gunung Semeru, Ranu Kumbolo" required type="text">
+                            <input class="form-control ps-5 py-3 bg-surface border-surface-variant rounded-3 font-body-md" id="trip" placeholder="e.g., Gunung Semeru, Ranu Kumbolo" required type="text">
                         </div>
                     </div>
 
@@ -171,17 +171,17 @@
     <script>
         function createRoom() {
             const host = document.getElementById("host-name").value.trim();
-            const restaurant = document.getElementById("restaurant").value.trim();
+            const trip = document.getElementById("trip").value.trim();
             const bankname = document.getElementById("bankname").value.trim();
             const rekening = document.getElementById("rekening").value.trim();
 
-            if (host === "" || restaurant === "" || bankname === "" || rekening === "") {
+            if (host === "" || trip === "" || bankname === "" || rekening === "") {
                 CustomAlert.show({ message: "Semua data wajib diisi", icon: "warning" });
                 return;
             }
 
             const roomData = {
-                roomName: restaurant,
+                roomName: trip,
                 host: host,
                 bankname: bankname,
                 rekening: rekening,
