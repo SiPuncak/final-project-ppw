@@ -14,7 +14,7 @@
     <script src="auth.js"></script>
 </head>
 
-<body class="d-flex flex-column min-vh- mountain-pattern">
+<body class="d-flex flex-column min-vh-100 mountain-pattern">
 
     <header class="bg-primary-container fixed-top p-2 px-3 shadow-sm">
         <div class="container-fluid max-w-container mx-auto py-2 px-3" style="height: 40px;">
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div id="historyList" class="d-flex flex-column gap-3 px-2"></div>
+        <div id="historyList" class="d-flex flex-column gap-3 px-2" style="min-height: 50vh;"></div>
 
         <div id="page" class="mt-5 d-flex justify-content-center align-items-center gap-3" style="padding-bottom: 50px;">
             <button id="prevPage" class="btn border border-surface-variant rounded-circle p-0 text-nowrap shadow-custom bg-white" style="width: 40px; height: 40px;">
@@ -172,7 +172,7 @@
         if (!isUserLoggedIn()) {
             const container = document.getElementById("historyList");
             container.innerHTML = `
-                <div class="bg-white rounded-custom text-center p-5 shadow-sm" style="margin-bottom: 8%;">
+                <div class="bg-white rounded-custom text-center p-5 shadow-sm">
                     <div class="d-inline-flex align-items-center justify-content-center bg-primary-fixed rounded-circle mb-3" style="width: 80px; height: 80px;">
                         <span class="material-symbols-outlined text-primary-custom" style="font-size: 48px; font-variation-settings: 'FILL' 1;">lock</span>
                     </div>
