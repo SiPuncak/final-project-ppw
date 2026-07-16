@@ -63,10 +63,10 @@
                 <img class="mt-2 mb-2" style="width: clamp(180px, 50vw, 300px);" src="sipuncak2.png">
             </div>
             <h1 class="font-display-lg text-on-surface mb-3">
-                Mendaki Bareng, Patungan Tanpa Ribet.
+                Liburan Bareng, Patungan Tanpa Ribet.
             </h1>
             <p class="font-body-lg text-secondary-custom opacity-75">
-                Platform pintar untuk membagi biaya peralatan pendakian. Adil, cepat, dan transparan untuk setiap petualangan gunung kamu.
+                Platform pintar untuk membagi biaya selama berlibur. Adil, cepat, dan transparan untuk setiap petualangan kamu.
             </p>
         </div>
 
@@ -79,7 +79,7 @@
                 <button onclick="handleCreateRoom()" class="btn btn-primary-custom w-100 py-3 px-4 font-label-md rounded-custom shadow-custom-md">
                     Buat Trip Baru
                 </button>
-                <p class="mt-2 font-label-sm text-secondary-custom opacity-50">Mulai sesi patungan peralatan pendakian sekarang</p>
+                <p class="mt-2 font-label-sm text-secondary-custom opacity-50">Mulai sesi patungan kebutuhan petualanganmu sekarang</p>
             </div>
 
             <div class="position-absolute rounded-circle" style="bottom: -24px; right: -24px; width: 128px; height: 128px; background-color: rgba(85, 107, 78, 0.08); filter: blur(48px); pointer-events: none;"></div>
@@ -90,7 +90,7 @@
                 <div class="p-4 bg-primary-fixed rounded-custom d-flex flex-column gap-2 hover-lift h-100">
                     <span class="material-symbols-outlined text-primary-custom" style="font-size: 36px; font-variation-settings: 'FILL' 1;">speed</span>
                     <h3 class="font-label-md text-on-surface fw-bold">Praktis & Cepat</h3>
-                    <p class="font-label-sm text-secondary-custom mb-0">Hitung biaya peralatan pendakian dalam hitungan detik, tanpa perlu kalkulator manual.</p>
+                    <p class="font-label-sm text-secondary-custom mb-0">Hitung biaya trip kamu dalam hitungan detik, tanpa perlu kalkulator manual.</p>
                 </div>
             </div>
             <div class="col-12 col-md-4" data-aos="fade-up" data-aos-duration="800" data-aos-delay="400">
@@ -336,7 +336,6 @@
     </script>
 
     <script>
-        // Update navigation based on login status
         function updateNavigation() {
             const isLoggedIn = isUserLoggedIn();
             const authNavText = document.getElementById('authNavText');
@@ -354,7 +353,6 @@
             }
         }
 
-        // Handle auth navigation click
         function handleAuthNavigation() {
             if (isUserLoggedIn()) {
                 logoutUser();
@@ -363,7 +361,6 @@
             }
         }
 
-        // Handle create room button click
         async function handleCreateRoom() {
             if (!isUserLoggedIn()) {
                 await CustomAlert.show({
@@ -382,32 +379,7 @@
             }
         }
 
-        // Update navigation on page load
         document.addEventListener('DOMContentLoaded', updateNavigation);
-
-        function joinRoom() {
-            const code = document.getElementById("roomCode").value.trim();
-
-            if (code === "") {
-                CustomAlert.show({ message: "Masukkan kode room dulu", icon: "warning" });
-                return;
-            }
-
-            let roomData = JSON.parse(localStorage.getItem("roomData"));
-
-            if (!roomData) {
-                roomData = {
-                    users: []
-                };
-            }
-
-            roomData.joinCode = code;
-            roomData.users.push("Guest");
-
-            localStorage.setItem("roomData", JSON.stringify(roomData));
-
-            window.location.href = "room.html";
-        }
     </script>
 
 </body>
