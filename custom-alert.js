@@ -213,5 +213,3 @@ const CustomAlert = {
         });
     }
 };
-
-window.customAlert = CustomAlert.show.bind(CustomAlert);

@@ -102,11 +102,7 @@
             const result = registerUser(name, email, password);
             if (result.success) {
                 await CustomAlert.show({ message: result.message, icon: "check_circle" });
-                
-                // Clear form
                 document.getElementById('registerForm').reset();
-                
-                // Redirect
                 window.location.href = 'login.html';
             } else {
                 CustomAlert.show({ message: result.message, icon: "error" });

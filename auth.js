@@ -39,11 +39,6 @@ function isUserLoggedIn() {
     return localStorage.getItem(CURRENT_USER_KEY) !== null;
 }
 
-function getCurrentUser() {
-    const userStr = localStorage.getItem(CURRENT_USER_KEY);
-    return userStr ? JSON.parse(userStr) : null;
-}
-
 function requireAuth() {
     if (!isUserLoggedIn()) {
         window.location.href = 'login.html';
